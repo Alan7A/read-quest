@@ -1,5 +1,4 @@
 import { Image, Progress, XStack, YStack, Text } from "tamagui";
-import { Book } from "utils/types";
 
 interface Props {
   // book: Book;

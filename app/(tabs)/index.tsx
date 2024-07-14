@@ -1,4 +1,4 @@
-import { ListFilter, X } from "@tamagui/lucide-icons";
+import { ListFilter } from "@tamagui/lucide-icons";
 import BookItem from "components/BookItem";
 import { Button, Text, View, XStack, YStack } from "tamagui";
 

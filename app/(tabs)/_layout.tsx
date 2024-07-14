@@ -1,4 +1,4 @@
-import { Link, Tabs } from "expo-router";
+import { Tabs } from "expo-router";
 import { Button, useTheme } from "tamagui";
 import {
   Home,

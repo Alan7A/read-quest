@@ -1,7 +1,7 @@
-import { X, Search } from "@tamagui/lucide-icons";
+import { Search } from "@tamagui/lucide-icons";
 import BookItem from "components/BookItem";
 import { Link } from "expo-router";
-import { Button, Input, Text, View, XStack, YStack } from "tamagui";
+import { Button, Input, Text, XStack, YStack } from "tamagui";
 
 const SearchBookModal = () => {
   return (
