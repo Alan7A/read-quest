@@ -1,7 +1,6 @@
-import { ExternalLink, ListFilter } from "@tamagui/lucide-icons";
+import { ListFilter, X } from "@tamagui/lucide-icons";
+import BookItem from "components/BookItem";
 import { Button, Text, View, XStack, YStack } from "tamagui";
-import { ToastControl } from "app/CurrentToast";
-import BookInProgress from "components/BookInProgress";
 
 export default function TabOneScreen() {
   return (
@@ -15,7 +14,7 @@ export default function TabOneScreen() {
         </XStack>
         <Button icon={<ListFilter />} chromeless />
       </XStack>
-      <BookInProgress />
+      <BookItem progress={45} />
     </YStack>
   );
 }

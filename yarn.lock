@@ -1827,6 +1827,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@hookform/resolvers@npm:^3.9.0":
+  version: 3.9.0
+  resolution: "@hookform/resolvers@npm:3.9.0"
+  peerDependencies:
+    react-hook-form: ^7.0.0
+  checksum: b878e92cebc703106a70987437ab4add0e71a327a0bb9864f82ab480b5d9a38b0d639f6154b138c3c4828af0db00c1b413279c102715146b19edc76b9786f1c3
+  languageName: node
+  linkType: hard
+
 "@isaacs/cliui@npm:^8.0.2":
   version: 8.0.2
   resolution: "@isaacs/cliui@npm:8.0.2"
@@ -6498,6 +6507,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"expo-image-loader@npm:~4.7.0":
+  version: 4.7.0
+  resolution: "expo-image-loader@npm:4.7.0"
+  peerDependencies:
+    expo: "*"
+  checksum: dbd87fdbf3e50b8c459e5ea985bfd20d77462229e46edefbd62b68e1676416f8608c16cf09103c2fef1bd84ecf55a1fd48f38e1954a2dd535e6f9beef04785bb
+  languageName: node
+  linkType: hard
+
+"expo-image-picker@npm:~15.0.7":
+  version: 15.0.7
+  resolution: "expo-image-picker@npm:15.0.7"
+  dependencies:
+    expo-image-loader: "npm:~4.7.0"
+  peerDependencies:
+    expo: "*"
+  checksum: 6ebd8638ce41c13f63c51494d4c95a991eac31ef6625dc8c4fffa4ce4ccda3fa1bc0b4b3528995262435ddfa76080752ac7f6762c62c1122d7933a4ad85629f6
+  languageName: node
+  linkType: hard
+
 "expo-keep-awake@npm:~13.0.2":
   version: 13.0.2
   resolution: "expo-keep-awake@npm:13.0.2"
@@ -10104,6 +10133,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-hook-form@npm:^7.52.1":
+  version: 7.52.1
+  resolution: "react-hook-form@npm:7.52.1"
+  peerDependencies:
+    react: ^16.8.0 || ^17 || ^18 || ^19
+  checksum: 5d117cb767114749163f3c52cc09e6dbefca8b450c91abe9958884b4df505a44f0b088046d1c98504bfcd5d4104126cfeb8917c25cb25b0610d89f713b4b2080
+  languageName: node
+  linkType: hard
+
 "react-is@npm:^16.12.0 || ^17.0.0 || ^18.0.0, react-is@npm:^18.0.0":
   version: 18.3.1
   resolution: "react-is@npm:18.3.1"
@@ -10415,6 +10453,7 @@ __metadata:
     "@babel/core": "npm:^7.24.6"
     "@expo/metro-config": "npm:~0.18.4"
     "@expo/metro-runtime": "npm:~3.2.1"
+    "@hookform/resolvers": "npm:^3.9.0"
     "@react-navigation/native": "npm:^6.1.17"
     "@tamagui/babel-plugin": "npm:^1.102.1"
     "@tamagui/config": "npm:^1.102.1"
@@ -10427,6 +10466,7 @@ __metadata:
     burnt: "npm:^0.12.2"
     expo: "npm:~51.0.9"
     expo-font: "npm:~12.0.6"
+    expo-image-picker: "npm:~15.0.7"
     expo-linking: "npm:~6.3.1"
     expo-router: "npm:~3.5.15"
     expo-splash-screen: "npm:~0.27.4"
@@ -10435,6 +10475,7 @@ __metadata:
     expo-web-browser: "npm:~13.0.3"
     react: "npm:18.2.0"
     react-dom: "npm:18.2.0"
+    react-hook-form: "npm:^7.52.1"
     react-native: "npm:0.74.1"
     react-native-reanimated: "npm:~3.10.1"
     react-native-safe-area-context: "npm:4.10.1"
@@ -10443,6 +10484,8 @@ __metadata:
     react-native-web: "npm:^0.19.12"
     tamagui: "npm:^1.102.1"
     typescript: "npm:^5.5.2"
+    zod: "npm:^3.23.8"
+    zustand: "npm:^4.5.4"
   languageName: unknown
   linkType: soft
 
@@ -12678,6 +12721,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"zod@npm:^3.23.8":
+  version: 3.23.8
+  resolution: "zod@npm:3.23.8"
+  checksum: 846fd73e1af0def79c19d510ea9e4a795544a67d5b34b7e1c4d0425bf6bfd1c719446d94cdfa1721c1987d891321d61f779e8236fde517dc0e524aa851a6eff1
+  languageName: node
+  linkType: hard
+
 "zustand@npm:^4.3.8":
   version: 4.5.2
   resolution: "zustand@npm:4.5.2"
@@ -12695,5 +12745,25 @@ __metadata:
     react:
       optional: true
   checksum: 9e9e92ce7378c5de1d7682f4f10340a1c07a81b673ad0a125b59883a6ade3f2bf39eac6ccc5b05630f9df6ed925291f681592db59ccd3815685c2e83f67c8525
+  languageName: node
+  linkType: hard
+
+"zustand@npm:^4.5.4":
+  version: 4.5.4
+  resolution: "zustand@npm:4.5.4"
+  dependencies:
+    use-sync-external-store: "npm:1.2.0"
+  peerDependencies:
+    "@types/react": ">=16.8"
+    immer: ">=9.0.6"
+    react: ">=16.8"
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+    immer:
+      optional: true
+    react:
+      optional: true
+  checksum: 44431b75f055c5440f47f448124f86230e1612bca8b09527890ec67a10b55f7ef9c288301f89346630552357627380c28222d933accdb55c119cf05e15f9e6cc
   languageName: node
   linkType: hard

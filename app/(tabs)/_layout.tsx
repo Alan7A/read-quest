@@ -1,17 +1,17 @@
 import { Link, Tabs } from "expo-router";
 import { Button, useTheme } from "tamagui";
 import {
-  Atom,
-  AudioWaveform,
   Home,
   LibraryBig,
   PieChart,
   Plus,
   Settings,
 } from "@tamagui/lucide-icons";
+import useModalsStore from "stores/modals.store";
 
 export default function TabLayout() {
   const theme = useTheme();
+  const setIsModalOpen = useModalsStore((state) => state.setIsAddBookModalOpen);
 
   return (
     <Tabs
@@ -25,9 +25,12 @@ export default function TabLayout() {
           title: "Home",
           tabBarIcon: ({ color }) => <Home color={color} />,
           headerRight: () => (
-            <Link href="/modal" asChild>
-              <Button icon={<Plus />} mr="$2" chromeless />
-            </Link>
+            <Button
+              icon={<Plus />}
+              mr="$2"
+              chromeless
+              onPress={() => setIsModalOpen(true)}
+            />
           ),
         }}
       />
