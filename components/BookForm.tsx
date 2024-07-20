@@ -1,4 +1,4 @@
-import { KeyboardAvoidingView } from "react-native";
+import { KeyboardAvoidingView, TouchableOpacity } from "react-native";
 import { useState } from "react";
 import { Button, Form, Image, Label, ScrollView, YStack } from "tamagui";
 import { BookPlus } from "@tamagui/lucide-icons";
@@ -6,12 +6,19 @@ import * as ImagePicker from "expo-image-picker";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Input from "./form/Input";
+import TextArea from "./form/TextArea";
 import { bookSchema } from "utils/schemas";
+import { useRoute } from "@react-navigation/native";
+import { Book } from "types/Book";
 
 const BookForm = () => {
-  const [cover, setCover] = useState<string | null>(null);
+  const route = useRoute();
+  const { bookJson } = route.params as { bookJson?: string };
+  const book = bookJson ? (JSON.parse(bookJson) as Book) : null;
+  const [cover, setCover] = useState<string | null>(book?.cover ?? null);
   const { control, handleSubmit, formState, setValue } = useForm({
     resolver: zodResolver(bookSchema),
+    defaultValues: book ?? {},
   });
   const { errors } = formState;
   console.log({ errors });
@@ -41,18 +48,20 @@ const BookForm = () => {
       style={{ flex: 1 }}
     >
       <ScrollView f={1}>
-        <Form f={1} px="$4" py="$2" gap="$2" onSubmit={handleSubmit(onSubmit)}>
+        <Form f={1} px="$4" py="$2" gap="$1" onSubmit={handleSubmit(onSubmit)}>
           <YStack>
             <Label htmlFor="cover">Cover</Label>
             {cover ? (
-              <Image
-                source={{
-                  uri: cover,
-                  width: 75,
-                  height: 112,
-                }}
-                borderRadius="$2"
-              />
+              <TouchableOpacity onPress={pickImage} style={{ maxWidth: 75 }}>
+                <Image
+                  source={{
+                    uri: cover,
+                    width: 75,
+                    height: 112,
+                  }}
+                  borderRadius="$2"
+                />
+              </TouchableOpacity>
             ) : (
               <Button
                 icon={BookPlus}
@@ -65,7 +74,12 @@ const BookForm = () => {
           </YStack>
           <YStack>
             <Label htmlFor="title">Title *</Label>
-            <Input name="title" placeholder="Title" control={control} />
+            <Input
+              name="title"
+              placeholder="Title"
+              control={control}
+              errorMessage={errors.title?.message}
+            />
           </YStack>
           <YStack>
             <Label htmlFor="author">Author</Label>
@@ -73,7 +87,7 @@ const BookForm = () => {
           </YStack>
           <YStack>
             <Label htmlFor="description">Description</Label>
-            <Input
+            <TextArea
               name="description"
               placeholder="Description"
               control={control}
@@ -81,14 +95,25 @@ const BookForm = () => {
           </YStack>
           <YStack>
             <Label htmlFor="pages">Pages *</Label>
-            <Input name="pages" placeholder="Pages" control={control} />
+            <Input
+              name="pages"
+              placeholder="Pages"
+              control={control}
+              errorMessage={errors.pages?.message}
+            />
           </YStack>
           <YStack>
             <Label htmlFor="publisher">Publisher</Label>
             <Input name="publisher" placeholder="Publisher" control={control} />
           </YStack>
-          <Form.Trigger asChild mt="$8">
-            <Button mt="$8">Add book</Button>
+          <Form.Trigger asChild mt="$6">
+            <Button
+              bg="$accentBackground"
+              mt="$8"
+              onPress={handleSubmit(onSubmit)}
+            >
+              Add book
+            </Button>
           </Form.Trigger>
         </Form>
       </ScrollView>

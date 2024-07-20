@@ -9,7 +9,7 @@ import {
 } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
-import { Provider } from "./Provider";
+import { Providers } from "./Provider";
 import { Button } from "tamagui";
 
 export {
@@ -49,7 +49,7 @@ function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
-    <Provider>
+    <Providers>
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
         <Stack>
           <Stack.Screen
@@ -80,6 +80,6 @@ function RootLayoutNav() {
           />
         </Stack>
       </ThemeProvider>
-    </Provider>
+    </Providers>
   );
 }

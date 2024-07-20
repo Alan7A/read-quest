@@ -1,4 +1,5 @@
 import { ListFilter } from "@tamagui/lucide-icons";
+import { defaultBook } from "api/books/books.utils";
 import BookItem from "components/BookItem";
 import { Button, Text, View, XStack, YStack } from "tamagui";
 
@@ -14,7 +15,7 @@ export default function TabOneScreen() {
         </XStack>
         <Button icon={<ListFilter />} chromeless />
       </XStack>
-      <BookItem progress={45} />
+      <BookItem progress={45} book={defaultBook} />
     </YStack>
   );
 }
