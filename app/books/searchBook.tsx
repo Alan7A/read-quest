@@ -59,7 +59,7 @@ const SearchBookModal = () => {
         <FlatList
           data={books}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <BookItem book={item} />}
+          renderItem={({ item }) => <BookItem book={item} href="/books/add" />}
           onEndReached={onEndReached}
           onEndReachedThreshold={0.5}
         />

@@ -6,17 +6,18 @@ import { Book } from "types/Book";
 
 interface Props {
   book: Book;
+  href: string;
   progress?: number;
 }
 
 const BookItem = (props: Props) => {
-  const { book, progress } = props;
+  const { book, progress, href } = props;
   const { title, author, cover } = book;
 
   const bookJson = JSON.stringify(book);
 
   return (
-    <Link href={{ pathname: "/books/add", params: { bookJson } }} asChild>
+    <Link href={{ pathname: href, params: { bookJson } }} asChild>
       <TouchableOpacity>
         <XStack bg="$backgroundHover" p="$2" gap="$4" borderRadius="$4" my="$2">
           {cover ? (

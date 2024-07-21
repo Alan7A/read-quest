@@ -2,15 +2,12 @@ import "../tamagui-web.css";
 
 import { useEffect } from "react";
 import { useColorScheme } from "react-native";
-import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider,
-} from "@react-navigation/native";
+import { ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 import { Providers } from "./Provider";
 import { Button } from "tamagui";
+import { lightTheme, darkTheme } from "../utils/themes";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -50,7 +47,7 @@ function RootLayoutNav() {
 
   return (
     <Providers>
-      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+      <ThemeProvider value={colorScheme === "light" ? lightTheme : darkTheme}>
         <Stack>
           <Stack.Screen
             name="(tabs)"

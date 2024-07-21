@@ -1,4 +1,4 @@
-## read-quest
+# read-quest
 
 This is an app to help you track your reading progress.
 
@@ -21,4 +21,3 @@ Run the app in your emulator or open [http://localhost:19002](http://localhost:1
 - [React Query](https://react-query.tanstack.com/)
 - [React Hook Form](https://react-hook-form.com/)
 - [Tamagui](https://tamagui.dev/)
-- [Supabase](https://supabase.com/)

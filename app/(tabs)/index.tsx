@@ -15,7 +15,7 @@ export default function TabOneScreen() {
         </XStack>
         <Button icon={<ListFilter />} chromeless />
       </XStack>
-      <BookItem progress={45} book={defaultBook} />
+      <BookItem progress={45} book={defaultBook} href="/books/123" />
     </YStack>
   );
 }

@@ -1,5 +1,5 @@
 import { Tabs } from "expo-router";
-import { Button, useTheme } from "tamagui";
+import { Button } from "tamagui";
 import {
   Home,
   LibraryBig,
@@ -10,15 +10,10 @@ import {
 import useModalsStore from "stores/modals.store";
 
 export default function TabLayout() {
-  const theme = useTheme();
   const setIsModalOpen = useModalsStore((state) => state.setIsAddBookModalOpen);
 
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: theme.red10.val,
-      }}
-    >
+    <Tabs screenOptions={{}}>
       <Tabs.Screen
         name="index"
         options={{

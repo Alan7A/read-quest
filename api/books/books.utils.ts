@@ -15,7 +15,7 @@ export const transformBooks = (books: GoogleBook[]): Book[] => {
   });
 };
 
-export const defaultBook = {
+export const defaultBook: Book = {
   id: "default",
   title: "Default Book",
   author: "Default Author",
