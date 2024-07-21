@@ -10,6 +10,9 @@ import TextArea from "./form/TextArea";
 import { bookSchema } from "utils/schemas";
 import { useRoute } from "@react-navigation/native";
 import { Book } from "types/Book";
+import { useCreateBook } from "api/books/books.hooks";
+import { router } from "expo-router";
+import { nanoid } from "nanoid";
 
 const BookForm = () => {
   const route = useRoute();
@@ -22,6 +25,7 @@ const BookForm = () => {
   });
   const { errors } = formState;
   console.log({ errors });
+  const { mutate: createBook } = useCreateBook();
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -37,9 +41,10 @@ const BookForm = () => {
     }
   };
 
-  const onSubmit = (data) => {
-    console.log(data);
-  };
+  const onSubmit = handleSubmit((data) => {
+    createBook({ ...data, cover: cover ?? null, id: book?.id ?? nanoid(12) });
+    router.replace("/");
+  });
 
   return (
     <KeyboardAvoidingView
@@ -48,7 +53,7 @@ const BookForm = () => {
       style={{ flex: 1 }}
     >
       <ScrollView f={1}>
-        <Form f={1} px="$4" py="$2" gap="$1" onSubmit={handleSubmit(onSubmit)}>
+        <Form f={1} px="$4" py="$2" gap="$1" onSubmit={onSubmit}>
           <YStack>
             <Label htmlFor="cover">Cover</Label>
             {cover ? (
@@ -107,11 +112,7 @@ const BookForm = () => {
             <Input name="publisher" placeholder="Publisher" control={control} />
           </YStack>
           <Form.Trigger asChild mt="$6">
-            <Button
-              bg="$accentBackground"
-              mt="$8"
-              onPress={handleSubmit(onSubmit)}
-            >
+            <Button bg="$accentBackground" mt="$8" onPress={onSubmit}>
               Add book
             </Button>
           </Form.Trigger>

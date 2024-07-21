@@ -4,7 +4,7 @@ import { Input as TamaguiInput, Text, YStack } from "tamagui";
 interface Props {
   name: string;
   placeholder: string;
-  control: Control;
+  control: Control<any, any>;
   errorMessage?: string;
 }
 
@@ -20,7 +20,7 @@ const Input = (props: Props) => {
     <YStack my="$0">
       <TamaguiInput
         placeholder={placeholder}
-        value={field.value}
+        value={String(field.value)}
         onChangeText={field.onChange}
       />
       {errorMessage ? (

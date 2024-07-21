@@ -2,7 +2,7 @@ import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
 
 // Tabla BOOKS
 export const books = sqliteTable("books", {
-  id: integer("id").primaryKey({ autoIncrement: true }),
+  id: text("id").primaryKey(),
   title: text("title").notNull(),
   author: text("author"),
   cover: text("cover"),
@@ -18,7 +18,7 @@ export const books = sqliteTable("books", {
 // Tabla SESSIONS
 export const sessions = sqliteTable("sessions", {
   id: integer("id").primaryKey({ autoIncrement: true }),
-  bookId: integer("book_id").references(() => books.id),
+  bookId: text("book_id").references(() => books.id),
   date: text("date").notNull(),
   duration: integer("duration").notNull(),
   pages: integer("pages").notNull(),
@@ -27,7 +27,7 @@ export const sessions = sqliteTable("sessions", {
 // Tabla NOTES
 export const notes = sqliteTable("notes", {
   id: integer("id").primaryKey({ autoIncrement: true }),
-  bookId: integer("book_id").references(() => books.id),
+  bookId: text("book_id").references(() => books.id),
   date: text("date").notNull(),
   page: integer("page"),
   text: text("text").notNull(),

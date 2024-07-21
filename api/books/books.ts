@@ -1,8 +1,9 @@
-import { useInfiniteQuery } from "react-query";
+import { db } from "db/db";
 import { transformBooks } from "./books.utils";
 import { GoogleBook } from "types/GoogleBook";
-
-const BOOKS_PER_PAGE = 10;
+import { books } from "db/db-schemas";
+import { Book } from "types/Book";
+import { eq } from "drizzle-orm";
 
 export const searchBooks = async (query: string, startIndex = 0) => {
   try {
@@ -19,16 +20,24 @@ export const searchBooks = async (query: string, startIndex = 0) => {
   }
 };
 
-export const useGetBooks = (query: string) => {
-  return useInfiniteQuery(
-    ["books", query],
-    ({ pageParam = 0 }) => searchBooks(query, pageParam),
-    {
-      getNextPageParam: (lastPage, allPages) => {
-        const nextPage = allPages.length * BOOKS_PER_PAGE;
-        return lastPage.length === BOOKS_PER_PAGE ? nextPage : undefined;
-      },
-      enabled: query.length > 0,
-    }
-  );
+export const createBook = async (book: Book) => {
+  try {
+    await db.insert(books).values({ ...book, status: "reading", progress: 0 });
+  } catch (error) {
+    console.log({ error });
+    return null;
+  }
+};
+
+export const getBooks = async (status: Book["status"]) => {
+  try {
+    const result = await db
+      .select()
+      .from(books)
+      .where(eq(books.status, status));
+    return result;
+  } catch (error) {
+    console.log({ error });
+    throw new Error("Error getting books");
+  }
 };

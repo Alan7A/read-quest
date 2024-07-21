@@ -9,6 +9,9 @@ import { CurrentToast } from "./CurrentToast";
 import { config } from "../tamagui.config";
 import AddBookModal from "components/modals/AddBookModal";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { useMigrations } from "drizzle-orm/expo-sqlite/migrator";
+import { db } from "db/db";
+import migrations from "../drizzle/migrations";
 
 export function Providers({
   children,
@@ -16,6 +19,10 @@ export function Providers({
 }: Omit<TamaguiProviderProps, "config">) {
   const colorScheme = useColorScheme();
   const queryClient = new QueryClient();
+  const { error } = useMigrations(db, migrations);
+  if (error) {
+    console.log("Migrations error", error);
+  }
 
   return (
     <QueryClientProvider client={queryClient}>

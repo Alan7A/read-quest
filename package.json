@@ -10,7 +10,11 @@
     "ios": "npx expo start --ios",
     "web": "npx expo start --web",
     "test": "jest --watchAll",
-    "generate-themes": "tamagui generate-themes ./theme-builder.ts ./theme-output.ts"
+    "generate-themes": "tamagui generate-themes ./theme-builder.ts ./theme-output.ts",
+    "check-types": "tsc",
+    "format": "yarn prettier --write",
+    "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|jsx|ts|tsx|json|css|scss|html)\"",
+    "clean": "rm -rf node_modules && rm -rf packages/**/node_modules && rm -rf apps/**/node_modules"
   },
   "jest": {
     "preset": "jest-expo"
@@ -22,6 +26,7 @@
     "@tamagui/config": "^1.102.1",
     "@tamagui/lucide-icons": "^1.102.1",
     "@tamagui/toast": "^1.102.1",
+    "babel-plugin-inline-import": "^3.0.0",
     "babel-preset-expo": "^11.0.6",
     "burnt": "^0.12.2",
     "drizzle-orm": "^0.32.0",
@@ -35,6 +40,7 @@
     "expo-status-bar": "^1.12.1",
     "expo-system-ui": "~3.0.4",
     "expo-web-browser": "~13.0.3",
+    "nanoid": "^5.0.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.52.1",
@@ -57,6 +63,7 @@
     "@tamagui/metro-plugin": "^1.102.1",
     "@types/react": "~18.2.79",
     "@types/react-native": "^0.73.0",
+    "drizzle-kit": "^0.23.0",
     "typescript": "^5.5.2"
   },
   "private": true,

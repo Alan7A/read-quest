@@ -1,5 +1,5 @@
 import { Search } from "@tamagui/lucide-icons";
-import { useGetBooks } from "api/books/books";
+import { useSearchBooks } from "api/books/books.hooks";
 import BookItem from "components/BookItem";
 import BookItemPlaceholder from "components/BookItem.placeholder";
 import { Link } from "expo-router";
@@ -10,7 +10,7 @@ import { Button, Input, Text, XStack, YStack } from "tamagui";
 const SearchBookModal = () => {
   const [query, setQuery] = useState("");
   const [inputValue, setInputValue] = useState("");
-  const { data, status, hasNextPage, fetchNextPage } = useGetBooks(query);
+  const { data, status, hasNextPage, fetchNextPage } = useSearchBooks(query);
   const books = data?.pages.flatMap((page) => page);
 
   const onEndReached = () => {

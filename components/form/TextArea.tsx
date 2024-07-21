@@ -4,7 +4,7 @@ import { TextArea as TamaguiTextArea } from "tamagui";
 interface Props {
   name: string;
   placeholder: string;
-  control: Control;
+  control: Control<any, any>;
 }
 
 const TextArea = (props: Props) => {
