@@ -40,7 +40,7 @@ export default function AddBookModal() {
             <ListItem
               pl="$0"
               icon={Search}
-              onPress={() => handleItemPress("/books/searchBook")}
+              onPress={() => handleItemPress("/books/search-book")}
             >
               Search online
             </ListItem>

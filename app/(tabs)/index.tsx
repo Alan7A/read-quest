@@ -21,7 +21,7 @@ export default function TabOneScreen() {
       mt="$10"
     >
       <Text>You are not reading any book yet</Text>
-      <Link href="/books/searchBook">
+      <Link href="/books/search-book">
         <Text fontWeight="700">Add a book</Text>
       </Link>
     </YStack>
@@ -42,7 +42,7 @@ export default function TabOneScreen() {
         <FlatList
           data={books}
           renderItem={({ item }) => (
-            <BookItem book={item} href={`/book/${item.id}`} />
+            <BookItem book={item} href={"/books/book-details"} />
           )}
           keyExtractor={(item) => item.id}
           showsVerticalScrollIndicator={false}

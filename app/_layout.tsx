@@ -8,8 +8,6 @@ import { SplashScreen, Stack } from "expo-router";
 import { Providers } from "./Provider";
 import { Button } from "tamagui";
 import { lightTheme, darkTheme } from "../utils/themes";
-import { useMigrations } from "drizzle-orm/expo-sqlite/migrator";
-import { db } from "db/db";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -59,7 +57,7 @@ function RootLayoutNav() {
           />
 
           <Stack.Screen
-            name="books/searchBook"
+            name="books/search-book"
             options={{
               title: "Search online",
               presentation: "modal",

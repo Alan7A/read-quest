@@ -7,12 +7,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Input from "./form/Input";
 import TextArea from "./form/TextArea";
-import { bookSchema } from "utils/schemas";
 import { useRoute } from "@react-navigation/native";
 import { Book } from "types/Book";
 import { useCreateBook } from "api/books/books.hooks";
 import { router } from "expo-router";
 import { nanoid } from "nanoid";
+import { insertBookSchema } from "utils/schemas";
 
 const BookForm = () => {
   const route = useRoute();
@@ -20,7 +20,7 @@ const BookForm = () => {
   const book = bookJson ? (JSON.parse(bookJson) as Book) : null;
   const [cover, setCover] = useState<string | null>(book?.cover ?? null);
   const { control, handleSubmit, formState, setValue } = useForm({
-    resolver: zodResolver(bookSchema),
+    resolver: zodResolver(insertBookSchema),
     defaultValues: book ?? {},
   });
   const { errors } = formState;

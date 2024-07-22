@@ -7995,6 +7995,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"drizzle-zod@npm:^0.5.1":
+  version: 0.5.1
+  resolution: "drizzle-zod@npm:0.5.1"
+  peerDependencies:
+    drizzle-orm: ">=0.23.13"
+    zod: "*"
+  checksum: d4266923df2525c5f357858e74f4ae32b8f825ebeecb8f97ca6be3cdf715c1542feb0e556dfeb78383673bc9d5b523e7b5cfce8dd6dbfddbe49eed9e1ada4827
+  languageName: node
+  linkType: hard
+
 "dset@npm:^3.1.1, dset@npm:^3.1.2":
   version: 3.1.3
   resolution: "dset@npm:3.1.3"
@@ -13624,6 +13634,7 @@ __metadata:
     burnt: "npm:^0.12.2"
     drizzle-kit: "npm:^0.23.0"
     drizzle-orm: "npm:^0.32.0"
+    drizzle-zod: "npm:^0.5.1"
     expo: "npm:~51.0.9"
     expo-font: "npm:~12.0.6"
     expo-image-picker: "npm:~15.0.7"
