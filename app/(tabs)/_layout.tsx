@@ -13,7 +13,7 @@ export default function TabLayout() {
   const setIsModalOpen = useModalsStore((state) => state.setIsAddBookModalOpen);
 
   return (
-    <Tabs screenOptions={{}}>
+    <Tabs>
       <Tabs.Screen
         name="index"
         options={{
@@ -21,7 +21,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <Home color={color} />,
           headerRight: () => (
             <Button
-              icon={<Plus />}
+              icon={<Plus size={24} />}
               mr="$2"
               chromeless
               onPress={() => setIsModalOpen(true)}

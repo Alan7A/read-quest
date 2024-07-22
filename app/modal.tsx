@@ -1,22 +1,63 @@
-import { Anchor, Paragraph, View, XStack } from 'tamagui'
+import { defaultBook } from "api/books/books.utils";
+import { Button, Image, Text, XStack, YStack } from "tamagui";
+import { Book as BookIcon, Play, Check, Pause } from "@tamagui/lucide-icons";
+import { useStopwatchStore } from "stores/stopwatch.store";
 
 export default function ModalScreen() {
+  const book = defaultBook;
+  const { cover, title, author } = book;
+  const { playPause, isActive, formatTime, timeInSeconds } =
+    useStopwatchStore();
+  const { hours, minutes, seconds } = formatTime(timeInSeconds);
+
   return (
-    <View flex={1} alignItems="center" justifyContent="center">
-      <XStack gap="$2">
-        <Paragraph ta="center">Made by</Paragraph>
-        <Anchor col="$blue10" href="https://twitter.com/natebirdman" target="_blank">
-          @natebirdman,
-        </Anchor>
-        <Anchor
-          color="$purple10"
-          href="https://github.com/tamagui/tamagui"
-          target="_blank"
-          rel="noreferrer"
-        >
-          give it a ⭐️
-        </Anchor>
+    <YStack px="$4" py="$8" jc="space-between" f={1}>
+      <XStack gap="$4">
+        {cover ? (
+          <Image
+            source={{
+              uri: cover,
+              width: 75,
+              height: 112,
+            }}
+            borderRadius="$2"
+          />
+        ) : (
+          <Button icon={BookIcon} w={75} h={112} scaleIcon={1.5} />
+        )}
+        <YStack gap="$1" w="100%">
+          <Text fontSize={16}>{title}</Text>
+          <Text fontSize={16} color="$color10">
+            by {author}
+          </Text>
+          <Text fontSize={16} mt="auto">
+            From page <Text fontWeight="bold">253</Text>
+          </Text>
+        </YStack>
       </XStack>
-    </View>
-  )
+
+      <YStack alignItems="center">
+        <Text>Time elapsed</Text>
+        <Text fontSize={64}>
+          {hours}:{minutes}:{seconds}
+        </Text>
+
+        <Button
+          onPress={playPause}
+          icon={isActive ? Pause : Play}
+          size={98}
+          borderRadius={999}
+        />
+      </YStack>
+
+      <Button
+        icon={<Check size={24} />}
+        backgroundColor="$accentColor"
+        size="$6"
+        // pressStyle={{ backgroundColor: "$backgroundFocus" }}
+      >
+        Finish
+      </Button>
+    </YStack>
+  );
 }

@@ -3,6 +3,7 @@ import { Book as BookIcon, Play } from "@tamagui/lucide-icons";
 import { Book } from "types/Book";
 import BookDetailsSection from "./BookDetailsSection";
 import BookDetailsAbout from "./BookDetailsAbout";
+import { Link } from "expo-router";
 
 interface Props {
   book: Book;
@@ -24,7 +25,7 @@ const BookDetails = (props: Props) => {
             borderRadius="$2"
           />
         ) : (
-          <Button icon={BookIcon} w={75} h={112} scaleIcon={1.5} />
+          <Button icon={BookIcon} w={112.5} h={168} scaleIcon={1.5} />
         )}
 
         <Text fontSize={20} textAlign="center">
@@ -42,7 +43,9 @@ const BookDetails = (props: Props) => {
         w="100%"
       >
         <YStack ai="center" gap="$2">
-          <Button icon={Play} size={98} borderRadius={999} />
+          <Link href="/modal" asChild>
+            <Button icon={Play} size={98} borderRadius={999} />
+          </Link>
           <Text>Start session</Text>
         </YStack>
         <XStack jc="space-between" w="80%">
