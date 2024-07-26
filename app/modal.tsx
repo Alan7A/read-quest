@@ -1,14 +1,36 @@
-import { defaultBook } from "api/books/books.utils";
 import { Button, Image, Text, XStack, YStack } from "tamagui";
 import { Book as BookIcon, Play, Check, Pause } from "@tamagui/lucide-icons";
 import { useStopwatchStore } from "stores/stopwatch.store";
+import { useEffect } from "react";
+import { Book } from "types/Book";
+import { useRoute } from "@react-navigation/native";
+import useModalsStore from "stores/modals.store";
+import FinishSessionModal from "components/modals/FinishSessionModal";
 
 export default function ModalScreen() {
-  const book = defaultBook;
+  const route = useRoute();
+  const { bookJson } = route.params as { bookJson: string };
+  const book = JSON.parse(bookJson) as Book;
   const { cover, title, author } = book;
   const { playPause, isActive, formatTime, timeInSeconds } =
     useStopwatchStore();
   const { hours, minutes, seconds } = formatTime(timeInSeconds);
+  const setIsModalOpen = useModalsStore(
+    (state) => state.setIsFinishSessionModalOpen
+  );
+
+  useEffect(() => {
+    if (!isActive && timeInSeconds === 0) {
+      playPause();
+    }
+  }, []);
+
+  const handleFinishSession = () => {
+    if (isActive) {
+      playPause();
+    }
+    setIsModalOpen(true);
+  };
 
   return (
     <YStack px="$4" py="$8" jc="space-between" f={1}>
@@ -51,6 +73,7 @@ export default function ModalScreen() {
       </YStack>
 
       <Button
+        onPress={handleFinishSession}
         icon={<Check size={24} />}
         backgroundColor="$accentColor"
         size="$6"
@@ -58,6 +81,7 @@ export default function ModalScreen() {
       >
         Finish
       </Button>
+      <FinishSessionModal book={book} />
     </YStack>
   );
 }

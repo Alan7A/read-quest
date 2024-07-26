@@ -4,6 +4,7 @@ import { Book } from "types/Book";
 import BookDetailsSection from "./BookDetailsSection";
 import BookDetailsAbout from "./BookDetailsAbout";
 import { Link } from "expo-router";
+import { useGetSessions } from "api/sessions/sessions.hooks";
 
 interface Props {
   book: Book;
@@ -11,7 +12,10 @@ interface Props {
 
 const BookDetails = (props: Props) => {
   const { book } = props;
-  const { title, author, cover, pages, progress } = book;
+  const { id, title, author, cover, pages, progress } = book;
+  const { data: sessions } = useGetSessions(id);
+  console.log({ sessions });
+
   return (
     <YStack f={1} p="$4" gap="$4">
       <YStack alignItems="center">
@@ -43,7 +47,13 @@ const BookDetails = (props: Props) => {
         w="100%"
       >
         <YStack ai="center" gap="$2">
-          <Link href="/modal" asChild>
+          <Link
+            href={{
+              pathname: "/modal",
+              params: { bookJson: JSON.stringify(book) },
+            }}
+            asChild
+          >
             <Button icon={Play} size={98} borderRadius={999} />
           </Link>
           <Text>Start session</Text>
@@ -69,9 +79,9 @@ const BookDetails = (props: Props) => {
       <BookDetailsSection
         name="Sessions"
         seeAllRoute="/books/sessions"
-        data={[]}
+        data={sessions ?? []}
         addNewRoute="/books/add-session"
-        renderItem={() => null}
+        renderItem={(session) => <Text>{session.item.duration}</Text>}
       />
       <BookDetailsSection
         name="Notes"

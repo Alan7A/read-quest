@@ -1,15 +1,6 @@
 import { z } from "zod";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
-import { books } from "db/db-schemas";
-
-// export const bookSchema = z.object({
-//   title: z.string().min(1, "Title is required"),
-//   author: z.string().nullable(),
-//   cover: z.string().nullable(),
-//   description: z.string().nullable(),
-//   pages: z.coerce.number().min(1, "Pages is required"),
-//   publisher: z.string().nullable(),
-// });
+import { books, sessions } from "db/db-schemas";
 
 export const insertBookSchema = createInsertSchema(books, {
   title: z.string().min(1, "Title is required"),
@@ -17,3 +8,7 @@ export const insertBookSchema = createInsertSchema(books, {
 });
 
 export const selectBookSchema = createSelectSchema(books);
+
+export const insertSessionSchema = createInsertSchema(sessions);
+
+export const selectSessionSchema = createSelectSchema(sessions);

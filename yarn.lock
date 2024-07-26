@@ -7592,6 +7592,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dayjs@npm:^1.11.12":
+  version: 1.11.12
+  resolution: "dayjs@npm:1.11.12"
+  checksum: 8ee7c1e14961fd08d40b788d0c0e930dc6288b3d32911bb911b2fb31bb703c262788164fbe678ee9e50e2a35268d667b8c8ba43fd1806771c1f404c300a2b428
+  languageName: node
+  linkType: hard
+
 "dayjs@npm:^1.8.15":
   version: 1.11.11
   resolution: "dayjs@npm:1.11.11"
@@ -13632,6 +13639,7 @@ __metadata:
     babel-plugin-inline-import: "npm:^3.0.0"
     babel-preset-expo: "npm:^11.0.6"
     burnt: "npm:^0.12.2"
+    dayjs: "npm:^1.11.12"
     drizzle-kit: "npm:^0.23.0"
     drizzle-orm: "npm:^0.32.0"
     drizzle-zod: "npm:^0.5.1"

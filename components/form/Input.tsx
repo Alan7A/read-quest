@@ -1,7 +1,7 @@
 import { Control, useController } from "react-hook-form";
-import { Input as TamaguiInput, Text, YStack } from "tamagui";
+import { InputProps, Input as TamaguiInput, Text, YStack } from "tamagui";
 
-interface Props {
+interface Props extends InputProps {
   name: string;
   placeholder: string;
   control: Control<any, any>;
@@ -9,7 +9,7 @@ interface Props {
 }
 
 const Input = (props: Props) => {
-  const { name, placeholder, control, errorMessage } = props;
+  const { name, placeholder, control, errorMessage, ...rest } = props;
   const { field } = useController({
     control,
     defaultValue: "",
@@ -22,6 +22,7 @@ const Input = (props: Props) => {
         placeholder={placeholder}
         value={String(field.value)}
         onChangeText={field.onChange}
+        {...rest}
       />
       {errorMessage ? (
         <Text color="$red5" fontSize="$2">
