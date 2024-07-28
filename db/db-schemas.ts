@@ -29,7 +29,9 @@ export const sessions = sqliteTable("sessions", {
 // Tabla NOTES
 export const notes = sqliteTable("notes", {
   id: integer("id").primaryKey({ autoIncrement: true }),
-  bookId: text("book_id").references(() => books.id),
+  bookId: text("book_id")
+    .references(() => books.id)
+    .notNull(),
   date: text("date").notNull(),
   page: integer("page"),
   text: text("text").notNull(),

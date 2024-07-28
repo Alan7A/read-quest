@@ -5,6 +5,11 @@ import BookDetailsSection from "./BookDetailsSection";
 import BookDetailsAbout from "./BookDetailsAbout";
 import { Link } from "expo-router";
 import { useGetSessions } from "api/sessions/sessions.hooks";
+import SessionItem from "components/Sessions/SessionItem";
+import useModalsStore from "stores/modals.store";
+import AddNoteModal from "components/modals/AddNoteModal";
+import { useGetNotes } from "api/notes/notes.hooks";
+import NoteItem from "components/Notes/NoteItem";
 
 interface Props {
   book: Book;
@@ -14,7 +19,14 @@ const BookDetails = (props: Props) => {
   const { book } = props;
   const { id, title, author, cover, pages, progress } = book;
   const { data: sessions } = useGetSessions(id);
-  console.log({ sessions });
+  const { data: notes } = useGetNotes(id);
+  const setIsFinishSessionModalOpen = useModalsStore(
+    (state) => state.setIsFinishSessionModalOpen
+  );
+  const setIsAddNoteModalOpen = useModalsStore(
+    (state) => state.setIsAddNoteModalOpen
+  );
+  console.log({ notes });
 
   return (
     <YStack f={1} p="$4" gap="$4">
@@ -78,19 +90,29 @@ const BookDetails = (props: Props) => {
 
       <BookDetailsSection
         name="Sessions"
-        seeAllRoute="/books/sessions"
-        data={sessions ?? []}
-        addNewRoute="/books/add-session"
-        renderItem={(session) => <Text>{session.item.duration}</Text>}
-      />
+        seeAllHref={{ pathname: "/books/sessions", params: { bookId: id } }}
+        isEmpty={!sessions?.length}
+        onAddNew={() => setIsFinishSessionModalOpen(true)}
+      >
+        {sessions?.slice(0, 3).map((session) => (
+          <SessionItem key={session.id} session={session} />
+        ))}
+      </BookDetailsSection>
       <BookDetailsSection
         name="Notes"
-        seeAllRoute="/books/notes"
-        data={[]}
-        addNewRoute="/books/add-note"
-        renderItem={() => null}
-      />
+        seeAllHref={{ pathname: "/books/notes", params: { bookId: id } }}
+        isEmpty={!sessions?.length}
+        onAddNew={() => {
+          console.log("hola");
+          setIsAddNoteModalOpen(true);
+        }}
+      >
+        {notes?.slice(0, 3).map((note) => (
+          <NoteItem key={note.id} note={note} />
+        ))}
+      </BookDetailsSection>
       <BookDetailsAbout book={book} />
+      <AddNoteModal bookId={id} />
     </YStack>
   );
 };

@@ -4,8 +4,8 @@ import { eq, sql } from "drizzle-orm";
 import { CreateSessionConfig } from "types/Session";
 
 export const createSession = async (session: CreateSessionConfig) => {
+  const { bookId, pages } = session;
   try {
-    const { bookId, pages } = session;
     // Create session
     await db.insert(sessions).values(session);
     // Increase book progress

@@ -9,6 +9,9 @@ import { Providers } from "./Providers";
 import { Button } from "tamagui";
 import { lightTheme, darkTheme } from "../utils/themes";
 import { SquarePen } from "@tamagui/lucide-icons";
+import dayjs from "dayjs";
+import localizedFormat from "dayjs/plugin/localizedFormat";
+import useModalsStore from "stores/modals.store";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -22,6 +25,9 @@ export const unstable_settings = {
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
+
+// Supply localized format options to dayjs
+dayjs.extend(localizedFormat);
 
 export default function RootLayout() {
   const [interLoaded, interError] = useFonts({
@@ -45,6 +51,9 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
+  const setIsAddNoteModalOpen = useModalsStore(
+    (state) => state.setIsAddNoteModalOpen
+  );
 
   return (
     <Providers>
@@ -69,9 +78,6 @@ function RootLayoutNav() {
             name="books/add"
             options={{
               title: "Add a book",
-              headerRight(props) {
-                return <Button onPress={() => {}}>Add</Button>;
-              },
             }}
           />
           <Stack.Screen
@@ -81,6 +87,11 @@ function RootLayoutNav() {
             }}
           />
           <Stack.Screen
+            name="books/sessions"
+            options={{ title: "Reading sessions" }}
+          />
+          <Stack.Screen name="books/notes" options={{ title: "Notes" }} />
+          <Stack.Screen
             name="modal"
             options={{
               title: "Reading",
@@ -89,7 +100,7 @@ function RootLayoutNav() {
               headerRight(props) {
                 return (
                   <Button
-                    onPress={() => {}}
+                    onPress={() => setIsAddNoteModalOpen(true)}
                     icon={<SquarePen size={16} />}
                     backgroundColor="transparent"
                     p="0"

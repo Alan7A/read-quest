@@ -16,7 +16,7 @@ export const searchBooks = async (query: string, startIndex = 0) => {
     return transformBooks(googleBooks);
   } catch (error) {
     console.log({ error });
-    return [];
+    throw error;
   }
 };
 
@@ -25,7 +25,7 @@ export const createBook = async (book: Book) => {
     await db.insert(books).values({ ...book, status: "reading", progress: 0 });
   } catch (error) {
     console.log({ error });
-    return null;
+    throw error;
   }
 };
 

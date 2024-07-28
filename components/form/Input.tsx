@@ -22,10 +22,11 @@ const Input = (props: Props) => {
         placeholder={placeholder}
         value={String(field.value)}
         onChangeText={field.onChange}
+        borderColor={errorMessage ? "$red10Light" : "$borderColor"}
         {...rest}
       />
       {errorMessage ? (
-        <Text color="$red5" fontSize="$2">
+        <Text color="$red10Light" fontSize="$2">
           {errorMessage}
         </Text>
       ) : null}

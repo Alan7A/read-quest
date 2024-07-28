@@ -1,18 +1,20 @@
 import { Link } from "expo-router";
 import { Text, XStack, YStack } from "tamagui";
 import { PlusCircle } from "@tamagui/lucide-icons";
-import { FlatList, ListRenderItem } from "react-native";
+import { ReactNode } from "react";
+import { Pressable } from "react-native";
+import { ExpoRouter } from "expo-router/types/expo-router";
 
 interface Props {
   name: string;
-  seeAllRoute?: string;
-  addNewRoute?: string;
-  data: any[];
-  renderItem: ListRenderItem<any>;
+  seeAllHref?: ExpoRouter.Href;
+  onAddNew?: () => void;
+  isEmpty: boolean;
+  children?: ReactNode;
 }
 
 const BookDetailsSection = (props: Props) => {
-  const { name, seeAllRoute, addNewRoute, data, renderItem } = props;
+  const { name, seeAllHref: seeAllRoute, onAddNew, isEmpty, children } = props;
 
   const emptyNode = (
     <XStack
@@ -27,27 +29,23 @@ const BookDetailsSection = (props: Props) => {
   );
 
   return (
-    <YStack w="100%" gap="$2">
+    <YStack w="100%">
       <XStack jc="space-between" px="$2">
         <Text>{name}</Text>
         <XStack>
-          {seeAllRoute && addNewRoute ? (
+          {seeAllRoute && onAddNew ? (
             <XStack gap="$4" ai="center">
               <Link href={seeAllRoute}>
                 <Text>See all</Text>
               </Link>
-              <Link href={addNewRoute}>
+              <Pressable onPress={onAddNew}>
                 <PlusCircle size={18} />
-              </Link>
+              </Pressable>
             </XStack>
           ) : null}
         </XStack>
       </XStack>
-      {!data.length ? (
-        emptyNode
-      ) : (
-        <FlatList data={data} renderItem={renderItem} maxToRenderPerBatch={3} />
-      )}
+      {isEmpty ? emptyNode : children}
     </YStack>
   );
 };
