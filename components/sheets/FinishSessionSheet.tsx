@@ -82,7 +82,15 @@ const FinishSessionSheet = (props: Props) => {
         exitStyle={{ opacity: 0 }}
       />
       <Sheet.Handle />
-      <Sheet.Frame px="$5" pt="$4" pb="$6" bg="$backgroundHover" w="110%">
+      <Sheet.Frame
+        px="$5"
+        pt="$4"
+        pb="$6"
+        bg="$backgroundHover"
+        w="110%"
+        borderTopEndRadius="$6"
+        borderTopStartRadius="$6"
+      >
         <YStack ai="center" gap="$2">
           <Text>Finish session</Text>
           <Form onSubmit={onSubmit} gap="$2" w="60%">

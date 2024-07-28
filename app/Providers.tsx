@@ -13,7 +13,7 @@ import { db } from "db/db";
 // @ts-ignore - For some reason TS doesn't recognize the migrations file
 import migrations from "../drizzle/migrations";
 import StopwatchService from "components/StopwatchService";
-import AddBookSheet from "components/modals/AddBookSheet";
+import ModalsAndSheets from "./ModalsAndSheets";
 
 export function Providers({
   children,
@@ -45,8 +45,8 @@ export function Providers({
             }
           >
             {children}
+            <ModalsAndSheets />
             <StopwatchService />
-            <AddBookSheet />
             <CurrentToast />
             <ToastViewport top="$8" left={0} right={0} />
           </ToastProvider>

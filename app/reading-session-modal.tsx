@@ -1,13 +1,21 @@
 import { Button, Image, Text, XStack, YStack } from "tamagui";
-import { Book as BookIcon, Play, Check, Pause } from "@tamagui/lucide-icons";
+import {
+  Book as BookIcon,
+  Play,
+  Check,
+  Pause,
+  SquarePen,
+} from "@tamagui/lucide-icons";
 import { useStopwatchStore } from "stores/stopwatch.store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Book } from "types/Book";
 import { useRoute } from "@react-navigation/native";
 import useModalsStore from "stores/modals.store";
-import FinishSessionSheet from "components/modals/FinishSessionSheet";
+import FinishSessionSheet from "components/sheets/FinishSessionSheet";
+import { Stack } from "expo-router";
+import NoteFormModal from "components/modals/NoteFormModal";
 
-export default function ModalScreen() {
+export default function ReadingSessionModal() {
   const route = useRoute();
   const { bookJson } = route.params as { bookJson: string };
   const book = JSON.parse(bookJson) as Book;
@@ -15,7 +23,8 @@ export default function ModalScreen() {
   const { playPause, isActive, formatTime, timeInSeconds } =
     useStopwatchStore();
   const { hours, minutes, seconds } = formatTime(timeInSeconds);
-  const setIsModalOpen = useModalsStore(
+  const [isNoteFormModalOpen, setisNoteFormModalOpen] = useState(false);
+  const setIsFinishSessionModalOpen = useModalsStore(
     (state) => state.setIsFinishSessionSheetOpen
   );
 
@@ -29,11 +38,30 @@ export default function ModalScreen() {
     if (isActive) {
       playPause();
     }
-    setIsModalOpen(true);
+    setIsFinishSessionModalOpen(true);
   };
 
   return (
     <YStack px="$4" py="$8" jc="space-between" f={1}>
+      <Stack.Screen
+        options={{
+          title: "Reading",
+          presentation: "fullScreenModal",
+          animation: "slide_from_bottom",
+          headerRight(props) {
+            return (
+              <Button
+                onPress={() => setisNoteFormModalOpen(true)}
+                icon={<SquarePen size={16} />}
+                backgroundColor="transparent"
+                p="0"
+              >
+                Add note
+              </Button>
+            );
+          },
+        }}
+      />
       <XStack gap="$4">
         {cover ? (
           <Image
@@ -82,6 +110,11 @@ export default function ModalScreen() {
         Finish
       </Button>
       <FinishSessionSheet book={book} />
+      <NoteFormModal
+        bookId={book.id}
+        isOpen={isNoteFormModalOpen}
+        onClose={() => setisNoteFormModalOpen(false)}
+      />
     </YStack>
   );
 }

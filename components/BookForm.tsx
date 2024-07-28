@@ -24,7 +24,6 @@ const BookForm = () => {
     defaultValues: book ?? {},
   });
   const { errors } = formState;
-  console.log({ errors });
   const { mutate: createBook } = useCreateBook();
 
   const pickImage = async () => {

@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import ModalComponent, { ModalProps } from "react-native-modal";
+import { View } from "tamagui";
 
 interface Props {
   isOpen: boolean;
@@ -18,7 +19,9 @@ const Modal = (props: Props) => {
       animationOut="fadeOutDown"
       {...modalProps}
     >
-      {children}
+      <View bg="$background" p="$4" br="$4" minWidth={300} mx="auto">
+        {children}
+      </View>
     </ModalComponent>
   );
 };

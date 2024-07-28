@@ -1,6 +1,7 @@
 import { ListFilter } from "@tamagui/lucide-icons";
 import { useGetBooks } from "api/books/books.hooks";
 import BookItem from "components/BookItem";
+import AddBookSheet from "components/sheets/AddBookSheet";
 import { Link } from "expo-router";
 import { FlatList } from "react-native";
 import { Button, Text, View, XStack, YStack } from "tamagui";
@@ -52,6 +53,7 @@ export default function TabOneScreen() {
       ) : (
         emptyNode
       )}
+      <AddBookSheet />
     </YStack>
   );
 }

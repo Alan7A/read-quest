@@ -6,12 +6,9 @@ import { ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 import { Providers } from "./Providers";
-import { Button } from "tamagui";
 import { lightTheme, darkTheme } from "../utils/themes";
-import { Plus, SquarePen } from "@tamagui/lucide-icons";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
-import useModalsStore from "stores/modals.store";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -51,9 +48,6 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
-  const setIsAddNoteModalOpen = useModalsStore(
-    (state) => state.setIsAddNoteModalOpen
-  );
 
   return (
     <Providers>
@@ -90,40 +84,6 @@ function RootLayoutNav() {
             name="books/[bookId]/sessions"
             options={{
               title: "Reading sessions",
-            }}
-          />
-          <Stack.Screen
-            name="books/[bookId]/notes"
-            options={{
-              title: "Notes",
-              headerRight: () => (
-                <Button
-                  icon={<Plus size={24} />}
-                  mr="$2"
-                  chromeless
-                  onPress={() => setIsAddNoteModalOpen(true)}
-                />
-              ),
-            }}
-          />
-          <Stack.Screen
-            name="modal"
-            options={{
-              title: "Reading",
-              presentation: "fullScreenModal",
-              animation: "slide_from_bottom",
-              headerRight(props) {
-                return (
-                  <Button
-                    onPress={() => setIsAddNoteModalOpen(true)}
-                    icon={<SquarePen size={16} />}
-                    backgroundColor="transparent"
-                    p="0"
-                  >
-                    Add note
-                  </Button>
-                );
-              },
             }}
           />
         </Stack>

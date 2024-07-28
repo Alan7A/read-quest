@@ -1,64 +1,55 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useCreateNote } from "api/notes/notes.hooks";
+import { useCreateNote, useEditNote } from "api/notes/notes.hooks";
 import Input from "components/form/Input";
 import TextArea from "components/form/TextArea";
 import { useForm } from "react-hook-form";
 import { Pressable } from "react-native";
-import useModalsStore from "stores/modals.store";
 import { Button, Form, Text } from "tamagui";
-import { CreateNoteConfig } from "types/Note";
+import { CreateNoteConfig, Note } from "types/Note";
 import { insertNoteSchema } from "utils/schemas";
 import Modal from "./Modal";
 
 interface Props {
   bookId: string;
+  isOpen: boolean;
+  onClose: () => void;
+  note?: Note;
 }
 
-const AddNoteModal = (props: Props) => {
-  const { bookId } = props;
-  const isAddNoteModalOpen = useModalsStore(
-    (state) => state.isAddNoteModalOpen
-  );
-  const setIsAddNoteModalOpen = useModalsStore(
-    (state) => state.setIsAddNoteModalOpen
-  );
+const NoteFormModal = (props: Props) => {
+  const { bookId, note, isOpen, onClose } = props;
   const { mutate: createNote } = useCreateNote();
+  const { mutate: editNote } = useEditNote();
   const { control, handleSubmit, formState, reset } = useForm<CreateNoteConfig>(
     {
       resolver: zodResolver(insertNoteSchema),
-      defaultValues: { bookId },
+      defaultValues: note
+        ? { ...note, page: note.page === 0 ? undefined : note.page }
+        : { bookId },
     }
   );
   const { errors } = formState;
 
   const onCancel = () => {
-    setIsAddNoteModalOpen(false);
+    onClose();
     reset();
   };
 
   const onSubmit = handleSubmit((data) => {
-    createNote({ ...data, bookId });
-    setIsAddNoteModalOpen(false);
+    if (note) {
+      editNote({ ...data, id: note.id, page: data.page ?? null });
+    } else {
+      createNote({ ...data, bookId });
+    }
+    onClose();
     reset();
   });
-  console.log({ errors });
 
   return (
-    <Modal
-      isOpen={isAddNoteModalOpen}
-      onClose={() => setIsAddNoteModalOpen(false)}
-    >
-      <Form
-        onSubmit={onSubmit}
-        gap="$4"
-        bg="$background"
-        p="$4"
-        br="$4"
-        minWidth={300}
-        mx="auto"
-      >
+    <Modal isOpen={isOpen} onClose={() => onClose()}>
+      <Form onSubmit={onSubmit} gap="$4">
         <Text textAlign="center" fontWeight="700">
-          Add a note
+          {note ? "Edit note" : "Add a note"}
         </Text>
         <TextArea
           name="text"
@@ -82,4 +73,4 @@ const AddNoteModal = (props: Props) => {
   );
 };
 
-export default AddNoteModal;
+export default NoteFormModal;
