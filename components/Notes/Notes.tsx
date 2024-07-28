@@ -20,6 +20,7 @@ const Notes = (props: Props) => {
         renderItem={({ item }) => <NoteItem note={item} />}
         keyExtractor={(item) => String(item.id)}
         ListEmptyComponent={emptyNode}
+        showsVerticalScrollIndicator={false}
       />
     </View>
   );

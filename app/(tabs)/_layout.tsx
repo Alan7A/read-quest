@@ -10,7 +10,7 @@ import {
 import useModalsStore from "stores/modals.store";
 
 export default function TabLayout() {
-  const setIsModalOpen = useModalsStore((state) => state.setIsAddBookModalOpen);
+  const setIsModalOpen = useModalsStore((state) => state.setIsAddBookSheetOpen);
 
   return (
     <Tabs>

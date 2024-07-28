@@ -32,12 +32,12 @@ const FormSchema = z
     path: ["endPage"],
   });
 
-const FinishSessionModal = (props: Props) => {
+const FinishSessionSheet = (props: Props) => {
   const { book } = props;
   const { id: bookId, progress } = book;
-  const isModalOpen = useModalsStore((state) => state.isFinishSessionModalOpen);
+  const isModalOpen = useModalsStore((state) => state.isFinishSessionSheetOpen);
   const setIsModalOpen = useModalsStore(
-    (state) => state.setIsFinishSessionModalOpen
+    (state) => state.setIsFinishSessionSheetOpen
   );
   const { timeInSeconds, restart } = useStopwatchStore();
   const { mutate: createSession } = useCreateSession();
@@ -125,4 +125,4 @@ const FinishSessionModal = (props: Props) => {
   );
 };
 
-export default FinishSessionModal;
+export default FinishSessionSheet;

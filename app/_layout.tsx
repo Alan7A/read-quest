@@ -8,7 +8,7 @@ import { SplashScreen, Stack } from "expo-router";
 import { Providers } from "./Providers";
 import { Button } from "tamagui";
 import { lightTheme, darkTheme } from "../utils/themes";
-import { SquarePen } from "@tamagui/lucide-icons";
+import { Plus, SquarePen } from "@tamagui/lucide-icons";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import useModalsStore from "stores/modals.store";
@@ -87,10 +87,25 @@ function RootLayoutNav() {
             }}
           />
           <Stack.Screen
-            name="books/sessions"
-            options={{ title: "Reading sessions" }}
+            name="books/[bookId]/sessions"
+            options={{
+              title: "Reading sessions",
+            }}
           />
-          <Stack.Screen name="books/notes" options={{ title: "Notes" }} />
+          <Stack.Screen
+            name="books/[bookId]/notes"
+            options={{
+              title: "Notes",
+              headerRight: () => (
+                <Button
+                  icon={<Plus size={24} />}
+                  mr="$2"
+                  chromeless
+                  onPress={() => setIsAddNoteModalOpen(true)}
+                />
+              ),
+            }}
+          />
           <Stack.Screen
             name="modal"
             options={{

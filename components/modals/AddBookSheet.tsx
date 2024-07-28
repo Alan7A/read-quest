@@ -4,19 +4,23 @@ import { SquarePen, Search } from "@tamagui/lucide-icons";
 import useModalsStore from "stores/modals.store";
 import { router } from "expo-router";
 
-export default function AddBookModal() {
-  const isModalOpen = useModalsStore((state) => state.isAddBookModalOpen);
-  const setIsModalOpen = useModalsStore((state) => state.setIsAddBookModalOpen);
+export default function AddBookSheet() {
+  const isAddBookSheetOpen = useModalsStore(
+    (state) => state.isAddBookSheetOpen
+  );
+  const setIsAddBookSheetOpen = useModalsStore(
+    (state) => state.setIsAddBookSheetOpen
+  );
 
   const handleItemPress = (goTo: string) => {
-    setIsModalOpen(false);
+    setIsAddBookSheetOpen(false);
     router.push(goTo);
   };
 
   return (
     <Sheet
-      open={isModalOpen}
-      onOpenChange={setIsModalOpen}
+      open={isAddBookSheetOpen}
+      onOpenChange={setIsAddBookSheetOpen}
       snapPointsMode="fit"
     >
       <Sheet.Overlay
@@ -31,7 +35,7 @@ export default function AddBookModal() {
           <Button
             icon={<X />}
             chromeless
-            onPress={() => setIsModalOpen(false)}
+            onPress={() => setIsAddBookSheetOpen(false)}
             pr="$1"
           />
         </XStack>

@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { Book } from "types/Book";
 import { useRoute } from "@react-navigation/native";
 import useModalsStore from "stores/modals.store";
-import FinishSessionModal from "components/modals/FinishSessionModal";
+import FinishSessionSheet from "components/modals/FinishSessionSheet";
 
 export default function ModalScreen() {
   const route = useRoute();
@@ -16,7 +16,7 @@ export default function ModalScreen() {
     useStopwatchStore();
   const { hours, minutes, seconds } = formatTime(timeInSeconds);
   const setIsModalOpen = useModalsStore(
-    (state) => state.setIsFinishSessionModalOpen
+    (state) => state.setIsFinishSessionSheetOpen
   );
 
   useEffect(() => {
@@ -81,7 +81,7 @@ export default function ModalScreen() {
       >
         Finish
       </Button>
-      <FinishSessionModal book={book} />
+      <FinishSessionSheet book={book} />
     </YStack>
   );
 }

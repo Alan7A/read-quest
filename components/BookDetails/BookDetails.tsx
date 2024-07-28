@@ -21,12 +21,11 @@ const BookDetails = (props: Props) => {
   const { data: sessions } = useGetSessions(id);
   const { data: notes } = useGetNotes(id);
   const setIsFinishSessionModalOpen = useModalsStore(
-    (state) => state.setIsFinishSessionModalOpen
+    (state) => state.setIsFinishSessionSheetOpen
   );
   const setIsAddNoteModalOpen = useModalsStore(
     (state) => state.setIsAddNoteModalOpen
   );
-  console.log({ notes });
 
   return (
     <YStack f={1} p="$4" gap="$4">
@@ -90,7 +89,7 @@ const BookDetails = (props: Props) => {
 
       <BookDetailsSection
         name="Sessions"
-        seeAllHref={{ pathname: "/books/sessions", params: { bookId: id } }}
+        seeAllHref={`/books/${id}/sessions`}
         isEmpty={!sessions?.length}
         onAddNew={() => setIsFinishSessionModalOpen(true)}
       >
@@ -100,10 +99,9 @@ const BookDetails = (props: Props) => {
       </BookDetailsSection>
       <BookDetailsSection
         name="Notes"
-        seeAllHref={{ pathname: "/books/notes", params: { bookId: id } }}
+        seeAllHref={`/books/${id}/notes`}
         isEmpty={!sessions?.length}
         onAddNew={() => {
-          console.log("hola");
           setIsAddNoteModalOpen(true);
         }}
       >

@@ -1,27 +1,32 @@
 import { create } from "zustand";
 
 interface State {
-  isAddBookModalOpen: boolean;
+  isAddBookSheetOpen: boolean;
   isAddNoteModalOpen: boolean;
-  isFinishSessionModalOpen: boolean;
+  isFinishSessionSheetOpen: boolean;
+  isEditDeleteSheetOpen: boolean;
 }
 
 interface Actions {
-  setIsAddBookModalOpen: (isOpen: boolean) => void;
+  setIsAddBookSheetOpen: (isOpen: boolean) => void;
   setIsAddNoteModalOpen: (isOpen: boolean) => void;
-  setIsFinishSessionModalOpen: (isOpen: boolean) => void;
+  setIsFinishSessionSheetOpen: (isOpen: boolean) => void;
+  setIsEditDeleteSheetOpen: (isOpen: boolean) => void;
 }
 
 const useModalsStore = create<State & Actions>()((set) => ({
-  isAddBookModalOpen: false,
-  setIsAddBookModalOpen: (isOpen: boolean) =>
-    set({ isAddBookModalOpen: isOpen }),
+  isAddBookSheetOpen: false,
+  setIsAddBookSheetOpen: (isOpen: boolean) =>
+    set({ isAddBookSheetOpen: isOpen }),
   isAddNoteModalOpen: false,
   setIsAddNoteModalOpen: (isOpen: boolean) =>
     set({ isAddNoteModalOpen: isOpen }),
-  isFinishSessionModalOpen: false,
-  setIsFinishSessionModalOpen: (isOpen: boolean) =>
-    set({ isFinishSessionModalOpen: isOpen }),
+  isFinishSessionSheetOpen: false,
+  setIsFinishSessionSheetOpen: (isOpen: boolean) =>
+    set({ isFinishSessionSheetOpen: isOpen }),
+  isEditDeleteSheetOpen: false,
+  setIsEditDeleteSheetOpen: (isOpen: boolean) =>
+    set({ isEditDeleteSheetOpen: isOpen }),
 }));
 
 export default useModalsStore;
