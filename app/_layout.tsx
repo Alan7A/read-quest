@@ -75,7 +75,7 @@ function RootLayoutNav() {
             }}
           />
           <Stack.Screen
-            name="books/book-details"
+            name="books/[bookId]/book-details"
             options={{
               title: "",
             }}

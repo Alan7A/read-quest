@@ -1,17 +1,7 @@
 import { Tabs } from "expo-router";
-import { Button } from "tamagui";
-import {
-  Home,
-  LibraryBig,
-  PieChart,
-  Plus,
-  Settings,
-} from "@tamagui/lucide-icons";
-import useModalsStore from "stores/modals.store";
+import { Home, LibraryBig, PieChart, Settings } from "@tamagui/lucide-icons";
 
 export default function TabLayout() {
-  const setIsModalOpen = useModalsStore((state) => state.setIsAddBookSheetOpen);
-
   return (
     <Tabs>
       <Tabs.Screen
@@ -19,14 +9,6 @@ export default function TabLayout() {
         options={{
           title: "Home",
           tabBarIcon: ({ color }) => <Home color={color} />,
-          headerRight: () => (
-            <Button
-              icon={<Plus size={24} />}
-              mr="$2"
-              chromeless
-              onPress={() => setIsModalOpen(true)}
-            />
-          ),
         }}
       />
       <Tabs.Screen

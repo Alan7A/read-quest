@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "2e3e28e7-ad5f-4d0f-aa9a-452741ad8e97",
+  "id": "a5551892-9551-481d-a7b6-3638203f180d",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "books": {
@@ -91,13 +91,6 @@
           "name": "book_id",
           "type": "text",
           "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "date": {
-          "name": "date",
-          "type": "text",
-          "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
@@ -110,6 +103,13 @@
         },
         "text": {
           "name": "text",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "date": {
+          "name": "date",
           "type": "text",
           "primaryKey": false,
           "notNull": true,
@@ -149,12 +149,19 @@
           "name": "book_id",
           "type": "text",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "autoincrement": false
         },
-        "date": {
-          "name": "date",
-          "type": "text",
+        "start_page": {
+          "name": "start_page",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "end_page": {
+          "name": "end_page",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -166,9 +173,9 @@
           "notNull": true,
           "autoincrement": false
         },
-        "pages": {
-          "name": "pages",
-          "type": "integer",
+        "date": {
+          "name": "date",
+          "type": "text",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false

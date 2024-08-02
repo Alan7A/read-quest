@@ -6,11 +6,11 @@ import BookDetailsAbout from "./BookDetailsAbout";
 import { Link } from "expo-router";
 import { useGetSessions } from "api/sessions/sessions.hooks";
 import SessionItem from "components/Sessions/SessionItem";
-import useModalsStore from "stores/modals.store";
 import NoteFormModal from "components/modals/NoteFormModal";
 import { useGetNotes } from "api/notes/notes.hooks";
 import NoteItem from "components/Notes/NoteItem";
 import { useState } from "react";
+import SessionFormModal from "components/modals/SessionFormModal";
 
 interface Props {
   book: Book;
@@ -22,9 +22,7 @@ const BookDetails = (props: Props) => {
   const { data: sessions } = useGetSessions(id);
   const { data: notes } = useGetNotes(id);
   const [isNoteFormModalOpen, setIsNoteFormModalOpen] = useState(false);
-  const setIsFinishSessionModalOpen = useModalsStore(
-    (state) => state.setIsFinishSessionSheetOpen
-  );
+  const [isSessionFormModalOpen, setIsSessionFormModalOpen] = useState(false);
 
   return (
     <YStack f={1} p="$4" gap="$4">
@@ -90,7 +88,7 @@ const BookDetails = (props: Props) => {
         name="Sessions"
         seeAllHref={`/books/${id}/sessions`}
         isEmpty={!sessions?.length}
-        onAddNew={() => setIsFinishSessionModalOpen(true)}
+        onAddNew={() => setIsSessionFormModalOpen(true)}
       >
         {sessions?.slice(0, 3).map((session) => (
           <SessionItem key={session.id} session={session} />
@@ -113,6 +111,12 @@ const BookDetails = (props: Props) => {
         bookId={id}
         isOpen={isNoteFormModalOpen}
         onClose={() => setIsNoteFormModalOpen(false)}
+      />
+      <SessionFormModal
+        bookId={book.id}
+        book={book}
+        isOpen={isSessionFormModalOpen}
+        onClose={() => setIsSessionFormModalOpen(false)}
       />
     </YStack>
   );

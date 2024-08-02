@@ -10,23 +10,20 @@ import { useStopwatchStore } from "stores/stopwatch.store";
 import { useEffect, useState } from "react";
 import { Book } from "types/Book";
 import { useRoute } from "@react-navigation/native";
-import useModalsStore from "stores/modals.store";
-import FinishSessionSheet from "components/sheets/FinishSessionSheet";
 import { Stack } from "expo-router";
 import NoteFormModal from "components/modals/NoteFormModal";
+import SessionFormModal from "components/modals/SessionFormModal";
 
 export default function ReadingSessionModal() {
   const route = useRoute();
   const { bookJson } = route.params as { bookJson: string };
   const book = JSON.parse(bookJson) as Book;
-  const { cover, title, author } = book;
+  const { cover, title, author, progress } = book;
   const { playPause, isActive, formatTime, timeInSeconds } =
     useStopwatchStore();
   const { hours, minutes, seconds } = formatTime(timeInSeconds);
   const [isNoteFormModalOpen, setisNoteFormModalOpen] = useState(false);
-  const setIsFinishSessionModalOpen = useModalsStore(
-    (state) => state.setIsFinishSessionSheetOpen
-  );
+  const [isSessionFormModalOpen, setIsSessionFormModalOpen] = useState(false);
 
   useEffect(() => {
     if (!isActive && timeInSeconds === 0) {
@@ -38,7 +35,7 @@ export default function ReadingSessionModal() {
     if (isActive) {
       playPause();
     }
-    setIsFinishSessionModalOpen(true);
+    setIsSessionFormModalOpen(true);
   };
 
   return (
@@ -81,7 +78,7 @@ export default function ReadingSessionModal() {
             by {author}
           </Text>
           <Text fontSize={16} mt="auto">
-            From page <Text fontWeight="bold">253</Text>
+            From page <Text fontWeight="bold">{progress}</Text>
           </Text>
         </YStack>
       </XStack>
@@ -109,7 +106,12 @@ export default function ReadingSessionModal() {
       >
         Finish
       </Button>
-      <FinishSessionSheet book={book} />
+      <SessionFormModal
+        bookId={book.id}
+        book={book}
+        isOpen={isSessionFormModalOpen}
+        onClose={() => setIsSessionFormModalOpen(false)}
+      />
       <NoteFormModal
         bookId={book.id}
         isOpen={isNoteFormModalOpen}

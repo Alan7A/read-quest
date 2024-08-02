@@ -11,9 +11,7 @@ export const selectBookSchema = createSelectSchema(books);
 
 // SESSIONS
 export const insertSessionSchema = createInsertSchema(sessions);
-export const selectSessionSchema = createSelectSchema(sessions, {
-  date: z.string().default(new Date().toISOString()),
-});
+export const selectSessionSchema = createSelectSchema(sessions);
 
 // NOTES
 export const insertNoteSchema = createInsertSchema(notes, {

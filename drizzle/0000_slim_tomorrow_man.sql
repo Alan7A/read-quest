@@ -12,18 +12,19 @@ CREATE TABLE `books` (
 --> statement-breakpoint
 CREATE TABLE `notes` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
-	`book_id` text,
-	`date` text NOT NULL,
+	`book_id` text NOT NULL,
 	`page` integer,
 	`text` text NOT NULL,
+	`date` text NOT NULL,
 	FOREIGN KEY (`book_id`) REFERENCES `books`(`id`) ON UPDATE no action ON DELETE no action
 );
 --> statement-breakpoint
 CREATE TABLE `sessions` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
-	`book_id` text,
-	`date` text NOT NULL,
+	`book_id` text NOT NULL,
+	`start_page` integer NOT NULL,
+	`end_page` integer NOT NULL,
 	`duration` integer NOT NULL,
-	`pages` integer NOT NULL,
+	`date` text NOT NULL,
 	FOREIGN KEY (`book_id`) REFERENCES `books`(`id`) ON UPDATE no action ON DELETE no action
 );

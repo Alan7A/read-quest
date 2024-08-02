@@ -1,13 +1,15 @@
-import { ListFilter } from "@tamagui/lucide-icons";
+import { ListFilter, Plus } from "@tamagui/lucide-icons";
 import { useGetBooks } from "api/books/books.hooks";
 import BookItem from "components/BookItem";
 import AddBookSheet from "components/sheets/AddBookSheet";
-import { Link } from "expo-router";
+import { Link, Tabs } from "expo-router";
+import { useState } from "react";
 import { FlatList } from "react-native";
 import { Button, Text, View, XStack, YStack } from "tamagui";
 
 export default function TabOneScreen() {
   const { data: books } = useGetBooks("reading");
+  const [isAddBookSheetOpen, setIsAddBookSheetOpen] = useState(false);
 
   const emptyNode = (
     <YStack
@@ -30,6 +32,18 @@ export default function TabOneScreen() {
 
   return (
     <YStack f={1} gap="$4" px="$4" pt="$5">
+      <Tabs.Screen
+        options={{
+          headerRight: () => (
+            <Button
+              icon={<Plus size={24} />}
+              mr="$2"
+              chromeless
+              onPress={() => setIsAddBookSheetOpen(true)}
+            />
+          ),
+        }}
+      />
       <XStack ai="center" jc="space-between">
         <XStack gap="$2" ai="center">
           <Text>Reading</Text>
@@ -43,7 +57,7 @@ export default function TabOneScreen() {
         <FlatList
           data={books}
           renderItem={({ item }) => (
-            <BookItem book={item} href={"/books/book-details"} />
+            <BookItem book={item} href={`/books/${item.id}/book-details`} />
           )}
           keyExtractor={(item) => item.id}
           showsVerticalScrollIndicator={false}
@@ -53,7 +67,10 @@ export default function TabOneScreen() {
       ) : (
         emptyNode
       )}
-      <AddBookSheet />
+      <AddBookSheet
+        isOpen={isAddBookSheetOpen}
+        setIsOpen={setIsAddBookSheetOpen}
+      />
     </YStack>
   );
 }

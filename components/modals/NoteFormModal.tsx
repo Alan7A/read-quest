@@ -4,7 +4,7 @@ import Input from "components/form/Input";
 import TextArea from "components/form/TextArea";
 import { useForm } from "react-hook-form";
 import { Pressable } from "react-native";
-import { Button, Form, Text } from "tamagui";
+import { Button, Form, H3, Text } from "tamagui";
 import { CreateNoteConfig, Note } from "types/Note";
 import { insertNoteSchema } from "utils/schemas";
 import Modal from "./Modal";
@@ -46,11 +46,11 @@ const NoteFormModal = (props: Props) => {
   });
 
   return (
-    <Modal isOpen={isOpen} onClose={() => onClose()}>
+    <Modal isOpen={isOpen} onClose={onClose}>
       <Form onSubmit={onSubmit} gap="$4">
-        <Text textAlign="center" fontWeight="700">
+        <H3 textAlign="center" fontWeight="700">
           {note ? "Edit note" : "Add a note"}
-        </Text>
+        </H3>
         <TextArea
           name="text"
           placeholder="Write your note here"

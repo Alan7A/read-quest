@@ -1,16 +1,17 @@
 import { ReactNode } from "react";
 import ModalComponent, { ModalProps } from "react-native-modal";
-import { View } from "tamagui";
+import { View, ViewProps } from "tamagui";
 
 interface Props {
   isOpen: boolean;
   onClose: () => void;
   children: ReactNode;
   modalProps?: ModalProps;
+  containerProps?: ViewProps;
 }
 
 const Modal = (props: Props) => {
-  const { isOpen, onClose, children, modalProps } = props;
+  const { isOpen, onClose, children, modalProps, containerProps } = props;
   return (
     <ModalComponent
       isVisible={isOpen}
@@ -19,7 +20,14 @@ const Modal = (props: Props) => {
       animationOut="fadeOutDown"
       {...modalProps}
     >
-      <View bg="$background" p="$4" br="$4" minWidth={300} mx="auto">
+      <View
+        bg="$background"
+        p="$4"
+        br="$4"
+        minWidth="90%"
+        mx="auto"
+        {...containerProps}
+      >
         {children}
       </View>
     </ModalComponent>

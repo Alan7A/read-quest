@@ -4,7 +4,7 @@ import {
   useQuery,
   useQueryClient,
 } from "react-query";
-import { createBook, getBooks, searchBooks } from "./books";
+import { createBook, getBook, getBooks, searchBooks } from "./books";
 import { Book } from "types/Book";
 
 const BOOKS_PER_PAGE = 10;
@@ -30,6 +30,13 @@ export const useCreateBook = () => {
     onSuccess: () => {
       queryClient.invalidateQueries(["books", "status", "reading"]);
     },
+  });
+};
+
+export const useGetBook = (id: string) => {
+  return useQuery({
+    queryKey: ["books", id],
+    queryFn: () => getBook(id),
   });
 };
 

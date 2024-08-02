@@ -29,6 +29,16 @@ export const createBook = async (book: Book) => {
   }
 };
 
+export const getBook = async (id: string) => {
+  try {
+    const book = await db.select().from(books).where(eq(books.id, id));
+    return book[0];
+  } catch (error) {
+    console.log({ error });
+    throw error;
+  }
+};
+
 export const getBooks = async (status: Book["status"]) => {
   try {
     const result = await db

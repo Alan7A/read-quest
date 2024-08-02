@@ -21,9 +21,10 @@ export const sessions = sqliteTable("sessions", {
   bookId: text("book_id")
     .references(() => books.id)
     .notNull(),
-  date: text("date").notNull(),
+  startPage: integer("start_page").notNull(),
+  endPage: integer("end_page").notNull(),
   duration: integer("duration").notNull(),
-  pages: integer("pages").notNull(),
+  date: text("date").notNull(),
 });
 
 // Tabla NOTES
@@ -32,7 +33,7 @@ export const notes = sqliteTable("notes", {
   bookId: text("book_id")
     .references(() => books.id)
     .notNull(),
-  date: text("date").notNull(),
   page: integer("page"),
   text: text("text").notNull(),
+  date: text("date").notNull(),
 });
