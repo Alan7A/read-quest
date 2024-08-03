@@ -1,16 +1,16 @@
-import { Button, Image, Text, XStack, YStack } from "tamagui";
 import { Book as BookIcon, Play } from "@tamagui/lucide-icons";
-import { Book } from "types/Book";
-import BookDetailsSection from "./BookDetailsSection";
-import BookDetailsAbout from "./BookDetailsAbout";
-import { Link } from "expo-router";
+import { useGetNotes } from "api/notes/notes.hooks";
 import { useGetSessions } from "api/sessions/sessions.hooks";
+import NoteItem from "components/Notes/NoteItem";
 import SessionItem from "components/Sessions/SessionItem";
 import NoteFormModal from "components/modals/NoteFormModal";
-import { useGetNotes } from "api/notes/notes.hooks";
-import NoteItem from "components/Notes/NoteItem";
-import { useState } from "react";
 import SessionFormModal from "components/modals/SessionFormModal";
+import { Link } from "expo-router";
+import { useState } from "react";
+import { Button, Image, Text, XStack, YStack } from "tamagui";
+import type { Book } from "types/Book";
+import BookDetailsAbout from "./BookDetailsAbout";
+import BookDetailsSection from "./BookDetailsSection";
 
 interface Props {
   book: Book;
@@ -32,7 +32,7 @@ const BookDetails = (props: Props) => {
             source={{
               uri: cover,
               width: 112.5,
-              height: 168,
+              height: 168
             }}
             borderRadius="$2"
           />
@@ -58,7 +58,7 @@ const BookDetails = (props: Props) => {
           <Link
             href={{
               pathname: "/reading-session-modal",
-              params: { bookJson: JSON.stringify(book) },
+              params: { bookJson: JSON.stringify(book) }
             }}
             asChild
           >

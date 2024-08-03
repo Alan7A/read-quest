@@ -1,9 +1,9 @@
 import { db } from "db/db";
-import { transformBooks } from "./books.utils";
-import { GoogleBook } from "types/GoogleBook";
 import { books } from "db/db-schemas";
-import { Book } from "types/Book";
 import { eq } from "drizzle-orm";
+import type { Book } from "types/Book";
+import type { GoogleBook } from "types/GoogleBook";
+import { transformBooks } from "./books.utils";
 
 export const searchBooks = async (query: string, startIndex = 0) => {
   try {

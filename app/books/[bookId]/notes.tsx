@@ -1,6 +1,6 @@
 import { Plus } from "@tamagui/lucide-icons";
-import NoteFormModal from "components/modals/NoteFormModal";
 import Notes from "components/Notes/Notes";
+import NoteFormModal from "components/modals/NoteFormModal";
 import { Stack, useLocalSearchParams } from "expo-router";
 import { useState } from "react";
 import { Button, View } from "tamagui";
@@ -21,7 +21,7 @@ const NotesScreen = () => {
               chromeless
               onPress={() => setIsNoteFormModalOpen(true)}
             />
-          ),
+          )
         }}
       />
       <Notes bookId={bookId!} />

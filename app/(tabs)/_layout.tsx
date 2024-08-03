@@ -1,5 +1,5 @@
-import { Tabs } from "expo-router";
 import { Home, LibraryBig, PieChart, Settings } from "@tamagui/lucide-icons";
+import { Tabs } from "expo-router";
 
 export default function TabLayout() {
   return (
@@ -8,28 +8,28 @@ export default function TabLayout() {
         name="index"
         options={{
           title: "Home",
-          tabBarIcon: ({ color }) => <Home color={color} />,
+          tabBarIcon: ({ color }) => <Home color={color} />
         }}
       />
       <Tabs.Screen
         name="library"
         options={{
           title: "Library",
-          tabBarIcon: ({ color }) => <LibraryBig color={color} />,
+          tabBarIcon: ({ color }) => <LibraryBig color={color} />
         }}
       />
       <Tabs.Screen
         name="analytics"
         options={{
           title: "Analytics",
-          tabBarIcon: ({ color }) => <PieChart color={color} />,
+          tabBarIcon: ({ color }) => <PieChart color={color} />
         }}
       />
       <Tabs.Screen
         name="settings"
         options={{
           title: "Settings",
-          tabBarIcon: ({ color }) => <Settings color={color} />,
+          tabBarIcon: ({ color }) => <Settings color={color} />
         }}
       />
     </Tabs>

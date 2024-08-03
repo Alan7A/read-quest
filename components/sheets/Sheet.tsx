@@ -1,6 +1,6 @@
 import { X } from "@tamagui/lucide-icons";
+import type { ReactNode } from "react";
 import { Button, Sheet as SheetComponent, Text, XStack } from "tamagui";
-import { ReactNode } from "react";
 
 interface Props {
   isOpen: boolean;

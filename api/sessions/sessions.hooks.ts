@@ -1,15 +1,15 @@
 import { useMutation, useQuery, useQueryClient } from "react-query";
+import type {
+  CreateSessionConfig,
+  DeleteSessionConfig,
+  Session
+} from "types/Session";
 import {
   createSession,
   deleteSession,
   editSession,
-  getSessions,
+  getSessions
 } from "./sessions";
-import {
-  CreateSessionConfig,
-  DeleteSessionConfig,
-  Session,
-} from "types/Session";
 
 export const useCreateSession = () => {
   const queryClient = useQueryClient();
@@ -19,14 +19,14 @@ export const useCreateSession = () => {
       const { bookId } = session;
       queryClient.invalidateQueries(["sessions", bookId]);
       queryClient.invalidateQueries(["books", bookId]);
-    },
+    }
   });
 };
 
 export const useGetSessions = (bookId: string) => {
   return useQuery({
     queryKey: ["sessions", bookId],
-    queryFn: () => getSessions(bookId),
+    queryFn: () => getSessions(bookId)
   });
 };
 
@@ -38,7 +38,7 @@ export const useEditSession = () => {
       const { bookId } = session;
       queryClient.invalidateQueries(["sessions", bookId]);
       queryClient.invalidateQueries(["books", bookId]);
-    },
+    }
   });
 };
 
@@ -49,6 +49,6 @@ export const useDeleteSession = () => {
       deleteSession(config.sessionId),
     onSuccess: (_, { bookId }) => {
       queryClient.invalidateQueries(["sessions", bookId]);
-    },
+    }
   });
 };

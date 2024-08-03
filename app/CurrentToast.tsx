@@ -37,7 +37,7 @@ export function ToastControl() {
         <Button
           onPress={() => {
             toast.show("Successfully saved!", {
-              message: "Don't worry, we've got your data.",
+              message: "Don't worry, we've got your data."
             });
           }}
         >

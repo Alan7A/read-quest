@@ -1,18 +1,18 @@
-import { Button, Image, Text, XStack, YStack } from "tamagui";
+import { useRoute } from "@react-navigation/native";
 import {
   Book as BookIcon,
-  Play,
   Check,
   Pause,
-  SquarePen,
+  Play,
+  SquarePen
 } from "@tamagui/lucide-icons";
-import { useStopwatchStore } from "stores/stopwatch.store";
-import { useEffect, useState } from "react";
-import { Book } from "types/Book";
-import { useRoute } from "@react-navigation/native";
-import { Stack } from "expo-router";
 import NoteFormModal from "components/modals/NoteFormModal";
 import SessionFormModal from "components/modals/SessionFormModal";
+import { Stack } from "expo-router";
+import { useEffect, useState } from "react";
+import { useStopwatchStore } from "stores/stopwatch.store";
+import { Button, Image, Text, XStack, YStack } from "tamagui";
+import type { Book } from "types/Book";
 
 export default function ReadingSessionModal() {
   const route = useRoute();
@@ -29,7 +29,7 @@ export default function ReadingSessionModal() {
     if (!isActive && timeInSeconds === 0) {
       playPause();
     }
-  }, []);
+  }, [isActive, timeInSeconds, playPause]);
 
   const handleFinishSession = () => {
     if (isActive) {
@@ -56,7 +56,7 @@ export default function ReadingSessionModal() {
                 Add note
               </Button>
             );
-          },
+          }
         }}
       />
       <XStack gap="$4">
@@ -65,14 +65,14 @@ export default function ReadingSessionModal() {
             source={{
               uri: cover,
               width: 75,
-              height: 112,
+              height: 112
             }}
             borderRadius="$2"
           />
         ) : (
           <Button icon={BookIcon} w={75} h={112} scaleIcon={1.5} />
         )}
-        <YStack gap="$1" w="100%">
+        <YStack gap="$1" w="80%">
           <Text fontSize={16}>{title}</Text>
           <Text fontSize={16} color="$color10">
             by {author}

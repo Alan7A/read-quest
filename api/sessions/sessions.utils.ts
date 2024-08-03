@@ -1,5 +1,5 @@
-import { Book } from "types/Book";
-import { GoogleBook } from "types/GoogleBook";
+import type { Book } from "types/Book";
+import type { GoogleBook } from "types/GoogleBook";
 
 export const transformBooks = (books: GoogleBook[]): Book[] => {
   return books.map((book) => {
@@ -12,7 +12,7 @@ export const transformBooks = (books: GoogleBook[]): Book[] => {
       pages: book.volumeInfo.pageCount,
       publisher: book.volumeInfo.publisher,
       progress: 0,
-      status: "pending",
+      status: "pending"
     };
   });
 };
@@ -26,5 +26,5 @@ export const defaultBook: Book = {
   pages: 100,
   publisher: "Default Publisher",
   progress: 0,
-  status: "pending",
+  status: "pending"
 };

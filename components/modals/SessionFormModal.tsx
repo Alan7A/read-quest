@@ -1,16 +1,16 @@
-import { CreateSessionConfig, Session } from "types/Session";
-import Modal from "./Modal";
-import { Button, Form, H3, Label, Text, YStack } from "tamagui";
-import { useCreateSession, useEditSession } from "api/sessions/sessions.hooks";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
+import { useCreateSession, useEditSession } from "api/sessions/sessions.hooks";
 import Input from "components/form/Input";
-import { useStopwatchStore } from "stores/stopwatch.store";
 import { router, usePathname } from "expo-router";
-import { Book } from "types/Book";
-import { Pressable } from "react-native";
 import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { Pressable } from "react-native";
+import { useStopwatchStore } from "stores/stopwatch.store";
+import { Button, Form, H3, Label, Text, YStack } from "tamagui";
+import type { Book } from "types/Book";
+import type { CreateSessionConfig, Session } from "types/Session";
+import { z } from "zod";
+import Modal from "./Modal";
 
 interface Props {
   bookId: string;
@@ -31,11 +31,11 @@ const FormSchema = z
     duration: z.coerce
       .number({ message: "Enter a duration" })
       .min(1, { message: "Duration must be greater than 0" }),
-    date: z.string(),
+    date: z.string()
   })
   .refine((data) => data.startPage <= data.endPage, {
     message: "Must be equal or greater than start page",
-    path: ["endPage"],
+    path: ["endPage"]
   });
 
 const SessionFormModal = (props: Props) => {
@@ -53,8 +53,8 @@ const SessionFormModal = (props: Props) => {
         startPage: progress ?? 0,
         endPage: undefined,
         duration: timeInSeconds,
-        date: new Date().toISOString(),
-      },
+        date: new Date().toISOString()
+      }
     });
   const { errors } = formState;
 
@@ -83,7 +83,7 @@ const SessionFormModal = (props: Props) => {
   useEffect(() => {
     setValue("duration", timeInSeconds);
     // TODO: Revisar que eslint diga que están bine las dependencias
-  }, [timeInSeconds]);
+  }, [timeInSeconds, setValue]);
 
   return (
     <Modal isOpen={isOpen} onClose={onCancel}>

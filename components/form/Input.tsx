@@ -1,5 +1,5 @@
-import { Control, useController } from "react-hook-form";
-import { InputProps, Input as TamaguiInput, Text, YStack } from "tamagui";
+import { type Control, useController } from "react-hook-form";
+import { type InputProps, Input as TamaguiInput, Text, YStack } from "tamagui";
 
 interface Props extends InputProps {
   name: string;
@@ -13,7 +13,7 @@ const Input = (props: Props) => {
   const { field } = useController({
     control,
     defaultValue: "",
-    name,
+    name
   });
 
   return (

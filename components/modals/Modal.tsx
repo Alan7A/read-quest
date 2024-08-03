@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
-import ModalComponent, { ModalProps } from "react-native-modal";
-import { View, ViewProps } from "tamagui";
+import type { ReactNode } from "react";
+import ModalComponent, { type ModalProps } from "react-native-modal";
+import { View, type ViewProps } from "tamagui";
 
 interface Props {
   isOpen: boolean;

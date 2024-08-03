@@ -1,18 +1,18 @@
+import { ToastProvider, ToastViewport } from "@tamagui/toast";
+import StopwatchService from "components/StopwatchService";
+import { db } from "db/db";
+import { useMigrations } from "drizzle-orm/expo-sqlite/migrator";
 import { useColorScheme } from "react-native";
+import { QueryClient, QueryClientProvider } from "react-query";
 import {
   PortalProvider,
   TamaguiProvider,
-  type TamaguiProviderProps,
+  type TamaguiProviderProps
 } from "tamagui";
-import { ToastProvider, ToastViewport } from "@tamagui/toast";
-import { CurrentToast } from "./CurrentToast";
-import { config } from "../tamagui.config";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { useMigrations } from "drizzle-orm/expo-sqlite/migrator";
-import { db } from "db/db";
 // @ts-ignore - For some reason TS doesn't recognize the migrations file
 import migrations from "../drizzle/migrations";
-import StopwatchService from "components/StopwatchService";
+import { config } from "../tamagui.config";
+import { CurrentToast } from "./CurrentToast";
 import ModalsAndSheets from "./ModalsAndSheets";
 
 export function Providers({

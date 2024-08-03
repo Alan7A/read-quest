@@ -1,7 +1,7 @@
 import { db } from "db/db";
 import { notes } from "db/db-schemas";
 import { desc, eq } from "drizzle-orm";
-import { CreateNoteConfig, Note } from "types/Note";
+import type { CreateNoteConfig, Note } from "types/Note";
 
 export const createNote = async (note: CreateNoteConfig) => {
   try {

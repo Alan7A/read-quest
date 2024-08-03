@@ -1,18 +1,18 @@
-import { KeyboardAvoidingView, TouchableOpacity } from "react-native";
-import { useState } from "react";
-import { Button, Form, Image, Label, ScrollView, YStack } from "tamagui";
-import { BookPlus } from "@tamagui/lucide-icons";
-import * as ImagePicker from "expo-image-picker";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Input from "./form/Input";
-import TextArea from "./form/TextArea";
 import { useRoute } from "@react-navigation/native";
-import { Book } from "types/Book";
+import { BookPlus } from "@tamagui/lucide-icons";
 import { useCreateBook } from "api/books/books.hooks";
+import * as ImagePicker from "expo-image-picker";
 import { router } from "expo-router";
 import { nanoid } from "nanoid";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { KeyboardAvoidingView, TouchableOpacity } from "react-native";
+import { Button, Form, Image, Label, ScrollView, YStack } from "tamagui";
+import type { Book } from "types/Book";
 import { insertBookSchema } from "utils/schemas";
+import Input from "./form/Input";
+import TextArea from "./form/TextArea";
 
 const BookForm = () => {
   const route = useRoute();
@@ -21,17 +21,17 @@ const BookForm = () => {
   const [cover, setCover] = useState<string | null>(book?.cover ?? null);
   const { control, handleSubmit, formState, setValue } = useForm({
     resolver: zodResolver(insertBookSchema),
-    defaultValues: book ?? {},
+    defaultValues: book ?? {}
   });
   const { errors } = formState;
   const { mutate: createBook } = useCreateBook();
 
   const pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
+    const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       aspect: [2, 3],
-      quality: 1,
+      quality: 1
     });
 
     if (!result.canceled) {
@@ -61,7 +61,7 @@ const BookForm = () => {
                   source={{
                     uri: cover,
                     width: 75,
-                    height: 112,
+                    height: 112
                   }}
                   borderRadius="$2"
                 />

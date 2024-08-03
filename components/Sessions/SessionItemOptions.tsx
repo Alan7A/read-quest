@@ -1,11 +1,11 @@
 import { Pencil, Trash2 } from "@tamagui/lucide-icons";
-import Sheet from "../sheets/Sheet";
-import { ListItem, YStack } from "tamagui";
-import { useState } from "react";
+import { useDeleteSession } from "api/sessions/sessions.hooks";
 import AlertModal from "components/modals/AlertModal";
 import SessionFormModal from "components/modals/SessionFormModal";
-import { useDeleteSession } from "api/sessions/sessions.hooks";
-import { Session } from "types/Session";
+import { useState } from "react";
+import { ListItem, YStack } from "tamagui";
+import type { Session } from "types/Session";
+import Sheet from "../sheets/Sheet";
 
 interface Props {
   isOpen: boolean;

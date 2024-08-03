@@ -1,6 +1,6 @@
+import { useGetNotes } from "api/notes/notes.hooks";
 import { FlatList } from "react-native";
 import { Text, View } from "tamagui";
-import { useGetNotes } from "api/notes/notes.hooks";
 import NoteItem from "./NoteItem";
 
 interface Props {

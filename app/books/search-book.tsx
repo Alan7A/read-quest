@@ -11,7 +11,7 @@ const SearchBookModal = () => {
   const [query, setQuery] = useState("");
   const [inputValue, setInputValue] = useState("");
   const { data, status, hasNextPage, fetchNextPage } = useSearchBooks(query);
-  const books = data?.pages.flatMap((page) => page);
+  const books = data?.pages.flat();
 
   const onEndReached = () => {
     if (hasNextPage && status !== "loading") {

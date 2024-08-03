@@ -1,9 +1,9 @@
-import { Link } from "expo-router";
-import { Text, XStack, YStack } from "tamagui";
 import { PlusCircle } from "@tamagui/lucide-icons";
-import { ReactNode } from "react";
+import { Link } from "expo-router";
+import type { ExpoRouter } from "expo-router/types/expo-router";
+import type { ReactNode } from "react";
 import { Pressable } from "react-native";
-import { ExpoRouter } from "expo-router/types/expo-router";
+import { Text, XStack, YStack } from "tamagui";
 
 interface Props {
   name: string;

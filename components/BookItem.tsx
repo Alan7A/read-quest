@@ -1,8 +1,8 @@
 import { Book as BookIcon } from "@tamagui/lucide-icons";
 import { Link } from "expo-router";
 import { TouchableOpacity } from "react-native";
-import { Image, Progress, XStack, YStack, Text, Button } from "tamagui";
-import { Book } from "types/Book";
+import { Button, Image, Progress, Text, XStack, YStack } from "tamagui";
+import type { Book } from "types/Book";
 
 interface Props {
   book: Book;
@@ -25,7 +25,7 @@ const BookItem = (props: Props) => {
               source={{
                 uri: cover,
                 width: 75,
-                height: 112,
+                height: 112
               }}
               borderRadius="$2"
             />

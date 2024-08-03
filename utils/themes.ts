@@ -18,8 +18,8 @@ export const lightTheme: Theme = {
     card: "#d8d9e4",
     text: "#40434f",
     border: "#c8cada",
-    notification: "#8c4351",
-  },
+    notification: "#8c4351"
+  }
 };
 
 export const darkTheme: Theme = {
@@ -30,6 +30,6 @@ export const darkTheme: Theme = {
     card: "#232434",
     text: "rgb(255, 255, 255)",
     border: "#2b2d40",
-    notification: "#8c4351",
-  },
+    notification: "#8c4351"
+  }
 };

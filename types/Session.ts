@@ -1,5 +1,5 @@
-import { insertSessionSchema, selectSessionSchema } from "utils/schemas";
-import { z } from "zod";
+import type { insertSessionSchema, selectSessionSchema } from "utils/schemas";
+import type { z } from "zod";
 
 export type Session = z.infer<typeof selectSessionSchema>;
 

@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import { useState } from "react";
 import { Pressable } from "react-native";
 import { Text, XStack, YStack } from "tamagui";
-import { Session } from "types/Session";
+import type { Session } from "types/Session";
 import { formatTime } from "utils/utils";
 import SessionItemOptions from "./SessionItemOptions";
 

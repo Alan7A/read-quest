@@ -39,7 +39,7 @@ type Theme = {
 };
 
 function t(a: [number, number][]) {
-  let res: Record<string, string> = {};
+  const res: Record<string, string> = {};
   for (const [ki, vi] of a) {
     res[ks[ki] as string] = vs[vi] as string;
   }
@@ -118,7 +118,7 @@ const vs = [
   "hsla(218, 61%, 63%, 1)",
   "hsla(250, 50%, 90%, 1)",
   "rgba(0,0,0,0.5)",
-  "rgba(0,0,0,0.8)",
+  "rgba(0,0,0,0.8)"
 ];
 
 const ks = [
@@ -158,7 +158,7 @@ const ks = [
   "colorFocus",
   "colorTransparent",
   "placeholderColor",
-  "outlineColor",
+  "outlineColor"
 ];
 
 const n1 = t([
@@ -198,7 +198,7 @@ const n1 = t([
   [33, 15],
   [34, 17],
   [35, 13],
-  [36, 18],
+  [36, 18]
 ]);
 
 export const light = n1;
@@ -239,7 +239,7 @@ const n2 = t([
   [33, 35],
   [34, 37],
   [35, 34],
-  [36, 38],
+  [36, 38]
 ]);
 
 export const dark = n2;
@@ -280,7 +280,7 @@ const n3 = t([
   [33, 54],
   [34, 55],
   [35, 52],
-  [36, 56],
+  [36, 56]
 ]);
 
 export const light_accent = n3;
@@ -321,7 +321,7 @@ const n4 = t([
   [33, 70],
   [34, 55],
   [35, 21],
-  [36, 56],
+  [36, 56]
 ]);
 
 export const dark_accent = n4;
@@ -329,7 +329,7 @@ const n5 = t([
   [30, 15],
   [31, 14],
   [32, 15],
-  [33, 14],
+  [33, 14]
 ]);
 
 export const light_alt1 = n5;
@@ -337,7 +337,7 @@ const n6 = t([
   [30, 14],
   [31, 13],
   [32, 14],
-  [33, 13],
+  [33, 13]
 ]);
 
 export const light_alt2 = n6;
@@ -349,7 +349,7 @@ const n7 = t([
   [26, 11],
   [27, 10],
   [29, 11],
-  [28, 12],
+  [28, 12]
 ]);
 
 export const light_active = n7;
@@ -364,7 +364,7 @@ const n8 = t([
   [26, 9],
   [27, 8],
   [29, 9],
-  [28, 10],
+  [28, 10]
 ]);
 
 export const light_surface1 = n8;
@@ -384,7 +384,7 @@ const n9 = t([
   [26, 10],
   [27, 9],
   [29, 10],
-  [28, 11],
+  [28, 11]
 ]);
 
 export const light_surface2 = n9;
@@ -400,7 +400,7 @@ const n10 = t([
   [26, 10],
   [27, 10],
   [29, 11],
-  [28, 11],
+  [28, 11]
 ]);
 
 export const light_surface4 = n10;
@@ -408,7 +408,7 @@ const n11 = t([
   [30, 35],
   [31, 14],
   [32, 35],
-  [33, 14],
+  [33, 14]
 ]);
 
 export const dark_alt1 = n11;
@@ -416,7 +416,7 @@ const n12 = t([
   [30, 14],
   [31, 34],
   [32, 14],
-  [33, 34],
+  [33, 34]
 ]);
 
 export const dark_alt2 = n12;
@@ -428,7 +428,7 @@ const n13 = t([
   [26, 32],
   [27, 33],
   [29, 32],
-  [28, 31],
+  [28, 31]
 ]);
 
 export const dark_active = n13;
@@ -443,7 +443,7 @@ const n14 = t([
   [26, 30],
   [27, 31],
   [29, 30],
-  [28, 29],
+  [28, 29]
 ]);
 
 export const dark_surface1 = n14;
@@ -463,7 +463,7 @@ const n15 = t([
   [26, 31],
   [27, 32],
   [29, 31],
-  [28, 30],
+  [28, 30]
 ]);
 
 export const dark_surface2 = n15;
@@ -479,7 +479,7 @@ const n16 = t([
   [26, 31],
   [27, 31],
   [29, 30],
-  [28, 30],
+  [28, 30]
 ]);
 
 export const dark_surface4 = n16;
@@ -487,7 +487,7 @@ const n17 = t([
   [30, 54],
   [31, 53],
   [32, 54],
-  [33, 53],
+  [33, 53]
 ]);
 
 export const light_accent_alt1 = n17;
@@ -495,7 +495,7 @@ const n18 = t([
   [30, 53],
   [31, 52],
   [32, 53],
-  [33, 52],
+  [33, 52]
 ]);
 
 export const light_accent_alt2 = n18;
@@ -507,7 +507,7 @@ const n19 = t([
   [26, 50],
   [27, 49],
   [29, 50],
-  [28, 51],
+  [28, 51]
 ]);
 
 export const light_accent_active = n19;
@@ -522,7 +522,7 @@ const n20 = t([
   [26, 48],
   [27, 0],
   [29, 48],
-  [28, 49],
+  [28, 49]
 ]);
 
 export const light_accent_surface1 = n20;
@@ -542,7 +542,7 @@ const n21 = t([
   [26, 49],
   [27, 48],
   [29, 49],
-  [28, 50],
+  [28, 50]
 ]);
 
 export const light_accent_surface2 = n21;
@@ -558,7 +558,7 @@ const n22 = t([
   [26, 49],
   [27, 49],
   [29, 50],
-  [28, 50],
+  [28, 50]
 ]);
 
 export const light_accent_surface4 = n22;
@@ -566,7 +566,7 @@ const n23 = t([
   [30, 70],
   [31, 51],
   [32, 70],
-  [33, 51],
+  [33, 51]
 ]);
 
 export const dark_accent_alt1 = n23;
@@ -574,7 +574,7 @@ const n24 = t([
   [30, 51],
   [31, 21],
   [32, 51],
-  [33, 21],
+  [33, 21]
 ]);
 
 export const dark_accent_alt2 = n24;
@@ -586,7 +586,7 @@ const n25 = t([
   [26, 68],
   [27, 69],
   [29, 68],
-  [28, 53],
+  [28, 53]
 ]);
 
 export const dark_accent_active = n25;
@@ -601,7 +601,7 @@ const n26 = t([
   [26, 67],
   [27, 53],
   [29, 67],
-  [28, 66],
+  [28, 66]
 ]);
 
 export const dark_accent_surface1 = n26;
@@ -621,7 +621,7 @@ const n27 = t([
   [26, 53],
   [27, 68],
   [29, 53],
-  [28, 67],
+  [28, 67]
 ]);
 
 export const dark_accent_surface2 = n27;
@@ -637,7 +637,7 @@ const n28 = t([
   [26, 53],
   [27, 53],
   [29, 67],
-  [28, 67],
+  [28, 67]
 ]);
 
 export const dark_accent_surface4 = n28;
@@ -653,7 +653,7 @@ const n29 = t([
   [26, 14],
   [27, 13],
   [29, 12],
-  [28, 11],
+  [28, 11]
 ]);
 
 export const light_SwitchThumb = n29;
@@ -680,7 +680,7 @@ const n31 = t([
   [26, 14],
   [27, 34],
   [29, 33],
-  [28, 32],
+  [28, 32]
 ]);
 
 export const dark_SwitchThumb = n31;
@@ -707,7 +707,7 @@ const n33 = t([
   [26, 53],
   [27, 52],
   [29, 51],
-  [28, 50],
+  [28, 50]
 ]);
 
 export const light_accent_SwitchThumb = n33;
@@ -726,7 +726,7 @@ const n34 = t([
   [26, 51],
   [27, 21],
   [29, 69],
-  [28, 68],
+  [28, 68]
 ]);
 
 export const dark_accent_SwitchThumb = n34;

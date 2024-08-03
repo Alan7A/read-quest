@@ -5,7 +5,7 @@ import TextArea from "components/form/TextArea";
 import { useForm } from "react-hook-form";
 import { Pressable } from "react-native";
 import { Button, Form, H3, Text } from "tamagui";
-import { CreateNoteConfig, Note } from "types/Note";
+import type { CreateNoteConfig, Note } from "types/Note";
 import { insertNoteSchema } from "utils/schemas";
 import Modal from "./Modal";
 
@@ -25,7 +25,7 @@ const NoteFormModal = (props: Props) => {
       resolver: zodResolver(insertNoteSchema),
       defaultValues: note
         ? { ...note, page: note.page === 0 ? undefined : note.page }
-        : { bookId },
+        : { bookId }
     }
   );
   const { errors } = formState;

@@ -46,7 +46,7 @@ export const useStopwatchStore = create<CronometroState>((set, get) => ({
     return {
       hours: hours.toString().padStart(2, "0"),
       minutes: minutes.toString().padStart(2, "0"),
-      seconds: seconds.toString().padStart(2, "0"),
+      seconds: seconds.toString().padStart(2, "0")
     };
-  },
+  }
 }));

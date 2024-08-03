@@ -1,5 +1,6 @@
 // CronometroService.tsx
-import React, { useEffect } from "react";
+import type React from "react";
+import { useEffect } from "react";
 import { useStopwatchStore } from "stores/stopwatch.store";
 
 const StopwatchService: React.FC = () => {

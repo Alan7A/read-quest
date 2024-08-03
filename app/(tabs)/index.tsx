@@ -41,7 +41,7 @@ export default function TabOneScreen() {
               chromeless
               onPress={() => setIsAddBookSheetOpen(true)}
             />
-          ),
+          )
         }}
       />
       <XStack ai="center" jc="space-between">

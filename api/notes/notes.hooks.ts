@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "react-query";
+import type { CreateNoteConfig, DeleteNoteConfig, Note } from "types/Note";
 import { createNote, deleteNote, editNote, getNotes } from "./notes";
-import { CreateNoteConfig, DeleteNoteConfig, Note } from "types/Note";
 
 export const useCreateNote = () => {
   const queryClient = useQueryClient();
@@ -9,14 +9,14 @@ export const useCreateNote = () => {
     onSuccess: (_, note) => {
       const { bookId } = note;
       queryClient.invalidateQueries(["notes", bookId]);
-    },
+    }
   });
 };
 
 export const useGetNotes = (bookId: string) => {
   return useQuery({
     queryKey: ["notes", bookId],
-    queryFn: () => getNotes(bookId),
+    queryFn: () => getNotes(bookId)
   });
 };
 
@@ -27,7 +27,7 @@ export const useEditNote = () => {
     onSuccess: (_, note) => {
       const { bookId } = note;
       queryClient.invalidateQueries(["notes", bookId]);
-    },
+    }
   });
 };
 
@@ -37,6 +37,6 @@ export const useDeleteNote = () => {
     mutationFn: (config: DeleteNoteConfig) => deleteNote(config.noteId),
     onSuccess: (_, { bookId }) => {
       queryClient.invalidateQueries(["notes", bookId]);
-    },
+    }
   });
 };

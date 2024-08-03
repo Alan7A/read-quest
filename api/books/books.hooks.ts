@@ -2,10 +2,10 @@ import {
   useInfiniteQuery,
   useMutation,
   useQuery,
-  useQueryClient,
+  useQueryClient
 } from "react-query";
+import type { Book } from "types/Book";
 import { createBook, getBook, getBooks, searchBooks } from "./books";
-import { Book } from "types/Book";
 
 const BOOKS_PER_PAGE = 10;
 
@@ -18,7 +18,7 @@ export const useSearchBooks = (query: string) => {
         const nextPage = allPages.length * BOOKS_PER_PAGE;
         return lastPage.length === BOOKS_PER_PAGE ? nextPage : undefined;
       },
-      enabled: query.length > 0,
+      enabled: query.length > 0
     }
   );
 };
@@ -29,20 +29,20 @@ export const useCreateBook = () => {
     mutationFn: (book: Book) => createBook(book),
     onSuccess: () => {
       queryClient.invalidateQueries(["books", "status", "reading"]);
-    },
+    }
   });
 };
 
 export const useGetBook = (id: string) => {
   return useQuery({
     queryKey: ["books", id],
-    queryFn: () => getBook(id),
+    queryFn: () => getBook(id)
   });
 };
 
 export const useGetBooks = (status: Book["status"]) => {
   return useQuery({
     queryKey: ["books", "status", status],
-    queryFn: () => getBooks(status),
+    queryFn: () => getBooks(status)
   });
 };

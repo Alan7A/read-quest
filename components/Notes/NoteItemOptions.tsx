@@ -1,11 +1,11 @@
 import { Pencil, Trash2 } from "@tamagui/lucide-icons";
-import Sheet from "../sheets/Sheet";
-import { ListItem, YStack } from "tamagui";
-import { useState } from "react";
-import NoteFormModal from "components/modals/NoteFormModal";
-import { Note } from "types/Note";
 import { useDeleteNote } from "api/notes/notes.hooks";
 import AlertModal from "components/modals/AlertModal";
+import NoteFormModal from "components/modals/NoteFormModal";
+import { useState } from "react";
+import { ListItem, YStack } from "tamagui";
+import type { Note } from "types/Note";
+import Sheet from "../sheets/Sheet";
 
 interface Props {
   isOpen: boolean;

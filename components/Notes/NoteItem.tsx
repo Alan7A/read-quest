@@ -1,9 +1,9 @@
 import dayjs from "dayjs";
+import { useState } from "react";
 import { Pressable } from "react-native";
 import { Text, XStack, YStack } from "tamagui";
-import { Note } from "types/Note";
+import type { Note } from "types/Note";
 import NoteItemOptions from "./NoteItemOptions";
-import { useState } from "react";
 
 interface Props {
   note: Note;

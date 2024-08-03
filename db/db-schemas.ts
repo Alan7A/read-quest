@@ -1,4 +1,4 @@
-import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
+import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
 // Tabla BOOKS
 export const books = sqliteTable("books", {
@@ -10,9 +10,9 @@ export const books = sqliteTable("books", {
   pages: integer("pages").notNull().default(0),
   publisher: text("publisher"),
   status: text("status", {
-    enum: ["pending", "reading", "finished"],
+    enum: ["pending", "reading", "finished"]
   }).notNull(),
-  progress: integer("progress"),
+  progress: integer("progress")
 });
 
 // Tabla SESSIONS
@@ -24,7 +24,7 @@ export const sessions = sqliteTable("sessions", {
   startPage: integer("start_page").notNull(),
   endPage: integer("end_page").notNull(),
   duration: integer("duration").notNull(),
-  date: text("date").notNull(),
+  date: text("date").notNull()
 });
 
 // Tabla NOTES
@@ -35,5 +35,5 @@ export const notes = sqliteTable("notes", {
     .notNull(),
   page: integer("page"),
   text: text("text").notNull(),
-  date: text("date").notNull(),
+  date: text("date").notNull()
 });

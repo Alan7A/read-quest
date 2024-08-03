@@ -1,7 +1,7 @@
 import { db } from "db/db";
 import { books, sessions } from "db/db-schemas";
 import { desc, eq } from "drizzle-orm";
-import { CreateSessionConfig, Session } from "types/Session";
+import type { CreateSessionConfig, Session } from "types/Session";
 
 export const createSession = async (session: CreateSessionConfig) => {
   const { bookId, endPage } = session;

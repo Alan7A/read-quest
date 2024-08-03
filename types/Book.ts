@@ -1,4 +1,4 @@
-import { selectBookSchema } from "utils/schemas";
-import { z } from "zod";
+import type { selectBookSchema } from "utils/schemas";
+import type { z } from "zod";
 
 export type Book = z.infer<typeof selectBookSchema>;

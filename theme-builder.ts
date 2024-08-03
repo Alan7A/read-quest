@@ -1,8 +1,8 @@
-import {
-  defaultSubThemes,
-  defaultComponentThemes,
-} from "@tamagui/themes/v3-themes";
 import { createThemeBuilder } from "@tamagui/theme-builder";
+import {
+  defaultComponentThemes,
+  defaultSubThemes
+} from "@tamagui/themes/v3-themes";
 
 const palettes = {
   light: [
@@ -27,7 +27,7 @@ const palettes = {
     "hsla(0, 14%, 10%, 0.5)",
     "hsla(0, 14%, 10%, 0.25)",
     "hsla(0, 14%, 10%, 0)",
-    "hsla(218, 61%, 62%, 1)",
+    "hsla(218, 61%, 62%, 1)"
   ],
   dark: [
     "hsla(218, 61%, 61%, 1)",
@@ -51,7 +51,7 @@ const palettes = {
     "hsla(0, 15%, 95%, 0.5)",
     "hsla(0, 15%, 95%, 0.25)",
     "hsla(0, 15%, 95%, 0)",
-    "hsla(218, 61%, 68%, 1)",
+    "hsla(218, 61%, 68%, 1)"
   ],
   light_accent: [
     "hsla(235, 19%, 78%, 1)",
@@ -75,7 +75,7 @@ const palettes = {
     "hsla(249, 52%, 95%, 0.5)",
     "hsla(249, 52%, 95%, 0.25)",
     "hsla(249, 52%, 95%, 0)",
-    "hsla(235, 19%, 55%, 1)",
+    "hsla(235, 19%, 55%, 1)"
   ],
   dark_accent: [
     "hsla(235, 19%, 46%, 1)",
@@ -99,8 +99,8 @@ const palettes = {
     "hsla(249, 52%, 95%, 0.5)",
     "hsla(249, 52%, 95%, 0.25)",
     "hsla(249, 52%, 95%, 0)",
-    "hsla(235, 19%, 25%, 1)",
-  ],
+    "hsla(235, 19%, 25%, 1)"
+  ]
 };
 const templates = {
   light_base: {
@@ -140,7 +140,7 @@ const templates = {
     colorFocus: -6,
     colorTransparent: -1,
     placeholderColor: -8,
-    outlineColor: -2,
+    outlineColor: -2
   },
   light_alt1: { color: -6, colorHover: -7, colorPress: -6, colorFocus: -7 },
   light_alt2: { color: -7, colorHover: -8, colorPress: -7, colorFocus: -8 },
@@ -152,7 +152,7 @@ const templates = {
     borderColor: 9,
     borderColorHover: 8,
     borderColorFocus: 9,
-    borderColorPress: 10,
+    borderColorPress: 10
   },
   light_surface2: {
     background: 7,
@@ -162,7 +162,7 @@ const templates = {
     borderColor: 10,
     borderColorHover: 9,
     borderColorFocus: 10,
-    borderColorPress: 11,
+    borderColorPress: 11
   },
   light_surface3: {
     background: 8,
@@ -172,7 +172,7 @@ const templates = {
     borderColor: 11,
     borderColorHover: 10,
     borderColorFocus: 11,
-    borderColorPress: 12,
+    borderColorPress: 12
   },
   light_inverseSurface1: {
     color: 6,
@@ -186,7 +186,7 @@ const templates = {
     borderColor: -7,
     borderColorHover: -8,
     borderColorFocus: -9,
-    borderColorPress: -10,
+    borderColorPress: -10
   },
   light_inverseActive: {
     color: 6,
@@ -200,7 +200,7 @@ const templates = {
     borderColor: -9,
     borderColorHover: -10,
     borderColorFocus: -11,
-    borderColorPress: -12,
+    borderColorPress: -12
   },
   light_surfaceActive: {
     background: 10,
@@ -210,7 +210,7 @@ const templates = {
     borderColor: 10,
     borderColorHover: 10,
     borderColorFocus: 11,
-    borderColorPress: 11,
+    borderColorPress: 11
   },
   dark_base: {
     accentBackground: 0,
@@ -249,7 +249,7 @@ const templates = {
     colorFocus: -6,
     colorTransparent: -1,
     placeholderColor: -8,
-    outlineColor: -2,
+    outlineColor: -2
   },
   dark_alt1: { color: -6, colorHover: -7, colorPress: -6, colorFocus: -7 },
   dark_alt2: { color: -7, colorHover: -8, colorPress: -7, colorFocus: -8 },
@@ -261,7 +261,7 @@ const templates = {
     borderColor: 9,
     borderColorHover: 10,
     borderColorFocus: 9,
-    borderColorPress: 8,
+    borderColorPress: 8
   },
   dark_surface2: {
     background: 7,
@@ -271,7 +271,7 @@ const templates = {
     borderColor: 10,
     borderColorHover: 11,
     borderColorFocus: 10,
-    borderColorPress: 9,
+    borderColorPress: 9
   },
   dark_surface3: {
     background: 8,
@@ -281,7 +281,7 @@ const templates = {
     borderColor: 11,
     borderColorHover: 12,
     borderColorFocus: 11,
-    borderColorPress: 10,
+    borderColorPress: 10
   },
   dark_inverseSurface1: {
     color: 6,
@@ -295,7 +295,7 @@ const templates = {
     borderColor: -7,
     borderColorHover: -8,
     borderColorFocus: -9,
-    borderColorPress: -10,
+    borderColorPress: -10
   },
   dark_inverseActive: {
     color: 6,
@@ -309,7 +309,7 @@ const templates = {
     borderColor: -9,
     borderColorHover: -10,
     borderColorFocus: -11,
-    borderColorPress: -12,
+    borderColorPress: -12
   },
   dark_surfaceActive: {
     background: 10,
@@ -319,8 +319,8 @@ const templates = {
     borderColor: 10,
     borderColorHover: 10,
     borderColorFocus: 9,
-    borderColorPress: 9,
-  },
+    borderColorPress: 9
+  }
 };
 
 export const themes = createThemeBuilder()
@@ -329,12 +329,12 @@ export const themes = createThemeBuilder()
   .addThemes({
     light: {
       template: "base",
-      palette: "light",
+      palette: "light"
     },
     dark: {
       template: "base",
-      palette: "dark",
-    },
+      palette: "dark"
+    }
   })
   .addChildThemes(
     palettes.light_accent
@@ -343,14 +343,14 @@ export const themes = createThemeBuilder()
             {
               parent: "light",
               template: "base",
-              palette: "light_accent",
+              palette: "light_accent"
             },
             {
               parent: "dark",
               template: "base",
-              palette: "dark_accent",
-            },
-          ],
+              palette: "dark_accent"
+            }
+          ]
         }
       : {}
   )
@@ -363,8 +363,8 @@ export const themes = createThemeBuilder()
       "surface2",
       "surface3",
       "surface4",
-      "active",
-    ],
+      "active"
+    ]
   })
 
   .build();

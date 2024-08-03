@@ -1,23 +1,23 @@
 import "../tamagui-web.css";
 
-import { useEffect } from "react";
-import { useColorScheme } from "react-native";
 import { ThemeProvider } from "@react-navigation/native";
-import { useFonts } from "expo-font";
-import { SplashScreen, Stack } from "expo-router";
-import { Providers } from "./Providers";
-import { lightTheme, darkTheme } from "../utils/themes";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
+import { useFonts } from "expo-font";
+import { SplashScreen, Stack } from "expo-router";
+import { useEffect } from "react";
+import { useColorScheme } from "react-native";
+import { darkTheme, lightTheme } from "../utils/themes";
+import { Providers } from "./Providers";
 
 export {
   // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
+  ErrorBoundary
 } from "expo-router";
 
 export const unstable_settings = {
   // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: "(tabs)",
+  initialRouteName: "(tabs)"
 };
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -29,7 +29,7 @@ dayjs.extend(localizedFormat);
 export default function RootLayout() {
   const [interLoaded, interError] = useFonts({
     Inter: require("@tamagui/font-inter/otf/Inter-Medium.otf"),
-    InterBold: require("@tamagui/font-inter/otf/Inter-Bold.otf"),
+    InterBold: require("@tamagui/font-inter/otf/Inter-Bold.otf")
   });
 
   useEffect(() => {
@@ -56,7 +56,7 @@ function RootLayoutNav() {
           <Stack.Screen
             name="(tabs)"
             options={{
-              headerShown: false,
+              headerShown: false
             }}
           />
 
@@ -65,25 +65,25 @@ function RootLayoutNav() {
             options={{
               title: "Search online",
               presentation: "modal",
-              animation: "slide_from_bottom",
+              animation: "slide_from_bottom"
             }}
           />
           <Stack.Screen
             name="books/add"
             options={{
-              title: "Add a book",
+              title: "Add a book"
             }}
           />
           <Stack.Screen
             name="books/[bookId]/book-details"
             options={{
-              title: "",
+              title: ""
             }}
           />
           <Stack.Screen
             name="books/[bookId]/sessions"
             options={{
-              title: "Reading sessions",
+              title: "Reading sessions"
             }}
           />
         </Stack>
