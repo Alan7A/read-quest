@@ -1,12 +1,12 @@
 import { Book as BookIcon } from "@tamagui/lucide-icons";
-import { Link } from "expo-router";
+import { Href, Link } from "expo-router";
 import { TouchableOpacity } from "react-native";
 import { Button, Image, Progress, Text, XStack, YStack } from "tamagui";
 import type { Book } from "types/Book";
 
 interface Props {
   book: Book;
-  href: string;
+  href: Href;
   progress?: number;
 }
 
@@ -17,6 +17,7 @@ const BookItem = (props: Props) => {
   const bookJson = JSON.stringify(book);
 
   return (
+    // @ts-ignore - learn how to get type of pathname
     <Link href={{ pathname: href, params: { bookJson } }} asChild>
       <TouchableOpacity>
         <XStack bg="$backgroundHover" p="$2" gap="$4" borderRadius="$4" my="$2">

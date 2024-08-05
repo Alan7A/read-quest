@@ -1,10 +1,49 @@
-import { Text, View } from "react-native";
+import { useTheme, useWindowDimensions } from "tamagui";
+import { TabView, SceneMap, TabBar } from "react-native-tab-view";
+import { useState } from "react";
+import FinishedBooks from "components/library/FinishedBooks";
+import WantToReadBooks from "components/library/WantToReadBooks";
 
 const Library = () => {
+  const layout = useWindowDimensions();
+  const theme = useTheme();
+
+  const [index, setIndex] = useState(0);
+  const [routes] = useState([
+    { key: "finished", title: "Finished" },
+    { key: "wantToRead", title: "Want to read" }
+  ]);
+
+  const renderTabBar = (props: any) => {
+    return (
+      <TabBar
+        {...props}
+        android_ripple={{ radius: 0 }}
+        indicatorStyle={{ backgroundColor: theme.accentColor.val }}
+        labelStyle={{ textTransform: "none" }}
+        indicatorContainerStyle={{
+          marginLeft: 40,
+          paddingHorizontal: 70
+        }}
+        style={{
+          backgroundColor: theme.background,
+          height: 50
+        }}
+      />
+    );
+  };
+
   return (
-    <View>
-      <Text>Library</Text>
-    </View>
+    <TabView
+      navigationState={{ index, routes }}
+      renderScene={SceneMap({
+        finished: FinishedBooks,
+        wantToRead: WantToReadBooks
+      })}
+      onIndexChange={setIndex}
+      initialLayout={{ width: layout.width }}
+      renderTabBar={renderTabBar}
+    />
   );
 };
 

@@ -5,12 +5,13 @@ import NoteItem from "components/Notes/NoteItem";
 import SessionItem from "components/Sessions/SessionItem";
 import NoteFormModal from "components/modals/NoteFormModal";
 import SessionFormModal from "components/modals/SessionFormModal";
-import { Link } from "expo-router";
+import { Link, Stack } from "expo-router";
 import { useState } from "react";
 import { Button, Image, Text, XStack, YStack } from "tamagui";
 import type { Book } from "types/Book";
 import BookDetailsAbout from "./BookDetailsAbout";
 import BookDetailsSection from "./BookDetailsSection";
+import BookDetailsOptionsSheet from "./BookDetailsOptionsSheet";
 
 interface Props {
   book: Book;
@@ -23,9 +24,25 @@ const BookDetails = (props: Props) => {
   const { data: notes } = useGetNotes(id);
   const [isNoteFormModalOpen, setIsNoteFormModalOpen] = useState(false);
   const [isSessionFormModalOpen, setIsSessionFormModalOpen] = useState(false);
+  const [isOptionsSheetOpen, setIsOptionsSheetOpen] = useState(false);
 
   return (
     <YStack f={1} p="$4" gap="$4">
+      <Stack.Screen
+        options={{
+          title: "",
+          headerRight: () => (
+            <Button
+              fontSize={24}
+              chromeless
+              pt="$2"
+              onPress={() => setIsOptionsSheetOpen(true)}
+            >
+              ⋮
+            </Button>
+          )
+        }}
+      />
       <YStack alignItems="center">
         {cover ? (
           <Image
@@ -117,6 +134,11 @@ const BookDetails = (props: Props) => {
         book={book}
         isOpen={isSessionFormModalOpen}
         onClose={() => setIsSessionFormModalOpen(false)}
+      />
+      <BookDetailsOptionsSheet
+        isOpen={isOptionsSheetOpen}
+        setIsOpen={setIsOptionsSheetOpen}
+        book={book}
       />
     </YStack>
   );

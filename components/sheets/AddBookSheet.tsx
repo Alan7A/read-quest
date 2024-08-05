@@ -2,6 +2,7 @@ import { Search, SquarePen } from "@tamagui/lucide-icons";
 import { router } from "expo-router";
 import { ListItem, YStack } from "tamagui";
 import Sheet from "./Sheet";
+import type { Href } from "expo-router";
 
 interface Props {
   isOpen: boolean;
@@ -11,7 +12,7 @@ interface Props {
 export default function AddBookSheet(props: Props) {
   const { isOpen, setIsOpen } = props;
 
-  const handleItemPress = (goTo: string) => {
+  const handleItemPress = (goTo: Href) => {
     setIsOpen(false);
     router.push(goTo);
   };

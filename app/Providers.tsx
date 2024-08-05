@@ -13,7 +13,6 @@ import {
 import migrations from "../drizzle/migrations";
 import { config } from "../tamagui.config";
 import { CurrentToast } from "./CurrentToast";
-import ModalsAndSheets from "./ModalsAndSheets";
 
 export function Providers({
   children,
@@ -45,7 +44,6 @@ export function Providers({
             }
           >
             {children}
-            <ModalsAndSheets />
             <StopwatchService />
             <CurrentToast />
             <ToastViewport top="$8" left={0} right={0} />

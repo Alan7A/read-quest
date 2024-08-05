@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRoute } from "@react-navigation/native";
 import { BookPlus } from "@tamagui/lucide-icons";
-import { useCreateBook } from "api/books/books.hooks";
+import { useCreateBook, useEditBook } from "api/books/books.hooks";
 import * as ImagePicker from "expo-image-picker";
 import { router } from "expo-router";
 import { nanoid } from "nanoid";
@@ -16,8 +16,12 @@ import TextArea from "./form/TextArea";
 
 const BookForm = () => {
   const route = useRoute();
-  const { bookJson } = route.params as { bookJson?: string };
+  const { bookJson, isEdit } = route.params as {
+    bookJson?: string;
+    isEdit?: string;
+  };
   const book = bookJson ? (JSON.parse(bookJson) as Book) : null;
+  const editing = isEdit === "true";
   const [cover, setCover] = useState<string | null>(book?.cover ?? null);
   const { control, handleSubmit, formState, setValue } = useForm({
     resolver: zodResolver(insertBookSchema),
@@ -25,6 +29,7 @@ const BookForm = () => {
   });
   const { errors } = formState;
   const { mutate: createBook } = useCreateBook();
+  const { mutate: editBook } = useEditBook();
 
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -41,8 +46,21 @@ const BookForm = () => {
   };
 
   const onSubmit = handleSubmit((data) => {
-    createBook({ ...data, cover: cover ?? null, id: book?.id ?? nanoid(12) });
-    router.replace("/");
+    try {
+      if (editing) {
+        if (!book) throw new Error("Book not found");
+        editBook({ ...data, cover: cover ?? null, id: book.id });
+      } else {
+        createBook({
+          ...data,
+          cover: cover ?? null,
+          id: book?.id ?? nanoid(12)
+        });
+      }
+      router.replace("/");
+    } catch (error) {
+      console.log(error);
+    }
   });
 
   return (

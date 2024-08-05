@@ -11,7 +11,9 @@ export const searchBooks = async (query: string, startIndex = 0) => {
     const path = `https://www.googleapis.com/books/v1/volumes?q=${q}&startIndex=${startIndex}&printType=books`;
     const response = await fetch(path);
     const data = await response.json();
+    console.log({ data });
     const googleBooks = data.items as GoogleBook[];
+    console.log("googleBooks", googleBooks.length);
 
     return transformBooks(googleBooks);
   } catch (error) {
@@ -49,5 +51,23 @@ export const getBooks = async (status: Book["status"]) => {
   } catch (error) {
     console.log({ error });
     throw new Error("Error getting books");
+  }
+};
+
+export const editBook = async (book: Book) => {
+  try {
+    await db.update(books).set(book).where(eq(books.id, book.id));
+  } catch (error) {
+    console.log({ error });
+    throw error;
+  }
+};
+
+export const deleteBook = async (bookId: string) => {
+  try {
+    await db.delete(books).where(eq(books.id, bookId));
+  } catch (error) {
+    console.log({ error });
+    throw error;
   }
 };

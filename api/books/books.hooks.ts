@@ -5,7 +5,14 @@ import {
   useQueryClient
 } from "react-query";
 import type { Book } from "types/Book";
-import { createBook, getBook, getBooks, searchBooks } from "./books";
+import {
+  createBook,
+  deleteBook,
+  editBook,
+  getBook,
+  getBooks,
+  searchBooks
+} from "./books";
 
 const BOOKS_PER_PAGE = 10;
 
@@ -44,5 +51,25 @@ export const useGetBooks = (status: Book["status"]) => {
   return useQuery({
     queryKey: ["books", "status", status],
     queryFn: () => getBooks(status)
+  });
+};
+
+export const useEditBook = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (book: Book) => editBook(book),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["books", "status"]);
+    }
+  });
+};
+
+export const useDeleteBook = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (bookId: string) => deleteBook(bookId),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["books", "status"]);
+    }
   });
 };
