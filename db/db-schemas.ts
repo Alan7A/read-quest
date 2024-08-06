@@ -10,7 +10,7 @@ export const books = sqliteTable("books", {
   pages: integer("pages").notNull().default(0),
   publisher: text("publisher"),
   status: text("status", {
-    enum: ["pending", "reading", "finished", "wantToRead"]
+    enum: ["reading", "finished", "wantToRead"]
   }).notNull(),
   statusDate: text("status_date"),
   progress: integer("progress")

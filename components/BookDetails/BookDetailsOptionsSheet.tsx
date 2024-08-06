@@ -1,4 +1,10 @@
-import { BookCheck, BookmarkPlus, Pencil, Trash2 } from "@tamagui/lucide-icons";
+import {
+  BookCheck,
+  BookOpenText,
+  BookmarkPlus,
+  Pencil,
+  Trash2
+} from "@tamagui/lucide-icons";
 import { useToastController } from "@tamagui/toast";
 import { useDeleteBook, useEditBook } from "api/books/books.hooks";
 import AlertModal from "components/modals/AlertModal";
@@ -20,6 +26,8 @@ const BookDetailsOptionsSheet = (props: Props) => {
   const { mutate: editBook } = useEditBook();
   const { mutate: deleteBook } = useDeleteBook();
   const toast = useToastController();
+  const isFinished = book.status === "finished";
+  const isWantToRead = book.status === "wantToRead";
 
   /**
    * TODO:
@@ -56,6 +64,16 @@ const BookDetailsOptionsSheet = (props: Props) => {
     toast.show("Book set as finished", { customData: { type: "success" } });
   };
 
+  const readingHandler = () => {
+    setIsOpen(false);
+    editBook({
+      ...book,
+      status: "reading",
+      statusDate: new Date().toISOString()
+    });
+    toast.show("Book set as reading", { customData: { type: "success" } });
+  };
+
   const onDelete = () => {
     setIsOpen(false);
     setIsAlertModalOpen(true);
@@ -66,6 +84,15 @@ const BookDetailsOptionsSheet = (props: Props) => {
     setIsAlertModalOpen(false);
   };
 
+  const setAsReadingItem = (
+    <ListItem
+      pl="$0"
+      icon={BookOpenText}
+      onPress={readingHandler}
+      title="Set as reading"
+    />
+  );
+
   return (
     <Sheet
       title="Book options"
@@ -74,18 +101,23 @@ const BookDetailsOptionsSheet = (props: Props) => {
       snapPoints={[32]}
     >
       <YStack>
-        <ListItem
-          pl="$0"
-          icon={BookmarkPlus}
-          onPress={wantToReadHandler}
-          title="Set as want to read"
-        />
-        <ListItem
-          pl="$0"
-          icon={BookCheck}
-          onPress={finishedHandler}
-          title="Set as finished"
-        />
+        {isWantToRead || isFinished ? setAsReadingItem : null}
+        {!isFinished ? (
+          <ListItem
+            pl="$0"
+            icon={BookCheck}
+            onPress={finishedHandler}
+            title="Set as finished"
+          />
+        ) : null}
+        {!isWantToRead ? (
+          <ListItem
+            pl="$0"
+            icon={BookmarkPlus}
+            onPress={wantToReadHandler}
+            title="Set as want to read"
+          />
+        ) : null}
         <ListItem pl="$0" icon={Pencil} onPress={onEdit} title="Edit" />
         <ListItem
           pl="$0"

@@ -10,7 +10,6 @@ export function CurrentToast() {
 
   const { customData } = currentToast;
   const { type } = customData ?? {};
-  console.log({ type });
 
   const getBgColor = () => {
     if (type === "success") return theme.green9Dark;

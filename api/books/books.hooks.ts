@@ -25,7 +25,8 @@ export const useSearchBooks = (query: string) => {
         const nextPage = allPages.length * BOOKS_PER_PAGE;
         return lastPage.length === BOOKS_PER_PAGE ? nextPage : undefined;
       },
-      enabled: query.length > 0
+      enabled: query.length > 0,
+      retry: false
     }
   );
 };
@@ -59,7 +60,7 @@ export const useEditBook = () => {
   return useMutation({
     mutationFn: (book: Book) => editBook(book),
     onSuccess: () => {
-      queryClient.invalidateQueries(["books", "status"]);
+      queryClient.invalidateQueries(["books"]);
     }
   });
 };

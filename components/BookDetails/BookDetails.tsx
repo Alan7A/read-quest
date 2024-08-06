@@ -5,13 +5,15 @@ import NoteItem from "components/Notes/NoteItem";
 import SessionItem from "components/Sessions/SessionItem";
 import NoteFormModal from "components/modals/NoteFormModal";
 import SessionFormModal from "components/modals/SessionFormModal";
+import dayjs from "dayjs";
 import { Link, Stack } from "expo-router";
 import { useState } from "react";
 import { Button, Image, Text, XStack, YStack } from "tamagui";
 import type { Book } from "types/Book";
+import { getTotalReadingTime } from "utils/utils";
 import BookDetailsAbout from "./BookDetailsAbout";
-import BookDetailsSection from "./BookDetailsSection";
 import BookDetailsOptionsSheet from "./BookDetailsOptionsSheet";
+import BookDetailsSection from "./BookDetailsSection";
 
 interface Props {
   book: Book;
@@ -25,6 +27,7 @@ const BookDetails = (props: Props) => {
   const [isNoteFormModalOpen, setIsNoteFormModalOpen] = useState(false);
   const [isSessionFormModalOpen, setIsSessionFormModalOpen] = useState(false);
   const [isOptionsSheetOpen, setIsOptionsSheetOpen] = useState(false);
+  const isFinished = book.status === "finished";
 
   return (
     <YStack f={1} p="$4" gap="$4">
@@ -93,10 +96,21 @@ const BookDetails = (props: Props) => {
             </Text>
           </YStack>
           <YStack ai="center">
-            <Text color="$color10" fontSize={12}>
-              Time elapsed
-            </Text>
-            <Text>16:05</Text>
+            {isFinished ? (
+              <>
+                <Text color="$color10" fontSize={12}>
+                  Finish date
+                </Text>
+                <Text>{dayjs(book.statusDate).format("L")}</Text>
+              </>
+            ) : (
+              <>
+                <Text color="$color10" fontSize={12}>
+                  Time elapsed
+                </Text>
+                <Text>{getTotalReadingTime(sessions)}</Text>
+              </>
+            )}
           </YStack>
         </XStack>
       </YStack>

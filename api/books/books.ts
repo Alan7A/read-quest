@@ -8,12 +8,10 @@ import { transformBooks } from "./books.utils";
 export const searchBooks = async (query: string, startIndex = 0) => {
   try {
     const q = query.replaceAll(" ", "+");
-    const path = `https://www.googleapis.com/books/v1/volumes?q=${q}&startIndex=${startIndex}&printType=books`;
+    const path = `https://www.googleapis.com/books/v1/volumes?q=${q}&startIndex=${startIndex}&printType=books&key=AIzaSyAnmR31R1pzAhekKfK-G-_82esV4EPZRJ8`;
     const response = await fetch(path);
     const data = await response.json();
-    console.log({ data });
     const googleBooks = data.items as GoogleBook[];
-    console.log("googleBooks", googleBooks.length);
 
     return transformBooks(googleBooks);
   } catch (error) {
